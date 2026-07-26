@@ -624,6 +624,7 @@ main {
 }
 .exp-logo {
   flex: none;
+  padding: 6px;
   width: 46px;
   height: 46px;
   border-radius: 12px;
@@ -1032,7 +1033,7 @@ main {
 }
 
 /* ============ SIDEBAR ============ */
-.contact-row {
+.connect-row {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -1042,14 +1043,14 @@ main {
   color: var(--text-muted);
   transition: color 0.2s;
 }
-.contact-row:first-of-type {
+.connect-row:first-of-type {
   border-top: none;
   padding-top: 0;
 }
-.contact-row:hover {
+.connect-row:hover {
   color: var(--cyan);
 }
-.contact-icon {
+.connect-icon {
   width: 26px;
   height: 26px;
   border-radius: 8px;
@@ -1233,19 +1234,19 @@ main {
   font-size: 12.5px;
   color: var(--text-faint);
 }
-.cs-byline-contact {
+.cs-byline-connect {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
   margin-left: auto;
 }
-.cs-byline-contact a {
+.cs-byline-connect a {
   font-size: 12.5px;
   color: var(--text-muted);
   font-family: var(--font-mono);
   transition: color 0.2s;
 }
-.cs-byline-contact a:hover {
+.cs-byline-connect a:hover {
   color: var(--cyan);
 }
 
@@ -1303,7 +1304,7 @@ main {
 
 /* ============ MOBILE TAB BAR ============ */
 .tabbar {
-  display: none;
+  /* display: none; */
   position: fixed;
   bottom: 0;
   left: 0;
@@ -1316,29 +1317,34 @@ main {
   padding: 8px 6px calc(8px + env(safe-area-inset-bottom));
   justify-content: space-around;
 }
-.tab-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-  font-size: 10.5px;
-  color: var(--text-faint);
-  padding: 6px 10px;
-  border-radius: 12px;
-  transition:
-    color 0.2s,
-    background 0.2s;
+.tab-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
+
+    padding:10px 16px;
+    border-radius:8px;
+
+    color:var(--text-muted);
+
+    transition:.3s ease;
 }
+
+.tab-item i{
+    width:20px;
+    height:20px;
+}
+
+.tab-item:hover{
+    color:var(--cyan);
+}
+
+
 .tab-item svg {
   width: 18px;
   height: 18px;
-}
-
-.tab-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
 }
 
 .tab-icon {
@@ -1477,7 +1483,7 @@ main {
     flex-direction: column;
     align-items: flex-start;
   }
-  .cs-byline-contact {
+  .cs-byline-connect {
     margin-left: 0;
   }
   .share-btn span.share-btn-label {
@@ -1490,3 +1496,4 @@ main {
     grid-template-columns: 1fr;
   }
 }
+
