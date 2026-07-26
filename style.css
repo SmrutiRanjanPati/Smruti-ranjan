@@ -1332,32 +1332,30 @@ main {
     overflow: hidden;
 } */
 
-.tab-item{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:4px;
-
-    padding:10px 16px;
-    border-radius:8px;
-
-    color:var(--text-muted);
-
-    transition:.3s ease;
+.tab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 12px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  color: var(--text-muted);
+  transition: 0.3s ease;
 }
 
-.tab-item i{
-    width:20px;
-    height:20px;
+.tab-item i {
+  width: 20px;
+  height: 20px;
 }
 
-.tab-item:hover{
-    color:var(--cyan);
+.tab-item:hover {
+  color: var(--cyan);
 }
 .tab-item svg {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
 }
 
 .tab-icon {
@@ -1509,4 +1507,3 @@ main {
     grid-template-columns: 1fr;
   }
 }
-
