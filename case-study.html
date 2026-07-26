@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Case Study — Smruti Ranjan Pati</title>
+<meta name="description" content="Case study by Smruti Ranjan Pati, UX/UI Product Designer." />
+<meta name="author" content="Smruti Ranjan Pati">
+<meta name="theme-color" content="#0A0B0F">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Case Study — Smruti Ranjan Pati">
+<meta property="og:description" content="Case study by Smruti Ranjan Pati, UX/UI Product Designer. Contact: smrutirtg@gmail.com · +91 93484 04629.">
+<meta name="twitter:card" content="summary">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+<script>
+  (function(){
+    var saved = localStorage.getItem('sr-theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    if (theme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+  })();
+</script>
+</head>
+<body>
+
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<header class="topnav" id="topnav">
+  <div class="topnav-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">SR</span>
+      <span class="brand-name">Smruti Ranjan</span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html#work">All case studies</a>
+    </nav>
+    <div class="nav-cta">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark / light mode">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.5M12 19v2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M2.5 12H5M19 12h2.5M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"/></svg>
+      </button>
+      <a class="btn btn-solid magnetic" href="Smruti_Ranjan_Pati_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <a class="cs-back reveal in" href="index.html#work">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+    Back to portfolio
+  </a>
+
+  <div id="csRoot" style="margin-top:14px;">
+
+    <!-- Loading / error / not-found state -->
+    <section class="card" id="csState">
+      <div class="cs-state">
+        <div class="spinner" aria-hidden="true"></div>
+        <h3>Loading case study…</h3>
+        <p>Pulling this project's details from <code>case-studies.json</code>.</p>
+      </div>
+    </section>
+
+    <!-- Populated once case-studies.json has loaded -->
+    <div id="csContent" hidden>
+
+      <section class="card cs-hero reveal">
+        <span class="cs-eyebrow" id="csEyebrow"></span>
+        <h1 id="csTitle"></h1>
+        <p class="about-text" id="csSummary"></p>
+
+        <div class="cs-meta-grid" id="csMetaGrid"></div>
+
+        <div class="cs-share-row">
+          <span class="cs-share-label">Share:</span>
+          <button class="share-btn copy-btn" id="shareCopyBtn" title="Copy this case study's link" aria-label="Copy case study link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+            <span class="share-btn-label">Copy link</span>
+            <span class="copy-toast">Link copied</span>
+          </button>
+          <a class="share-btn" id="shareLinkedIn" href="#" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+            <span class="share-btn-label">LinkedIn</span>
+          </a>
+          <a class="share-btn" id="shareTwitter" href="#" target="_blank" rel="noopener" aria-label="Share on X (Twitter)">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2.4h3.3l-7.2 8.2 8.5 11h-6.6l-5.2-6.8-5.9 6.8H2.4l7.7-8.8-8.1-10.4h6.8l4.7 6.2 5.4-6.2zm-1.2 17.3h1.8L7.4 4.2H5.5L17.7 19.7z"/></svg>
+            <span class="share-btn-label">X</span>
+          </a>
+          <a class="share-btn" id="shareEmail" href="#" aria-label="Share via email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+            <span class="share-btn-label">Email</span>
+          </a>
+        </div>
+
+        <div class="cs-byline">
+          <div class="avatar"><span>SR</span></div>
+          <div class="cs-byline-text">
+            <h4>Smruti Ranjan Pati</h4>
+            <p>UX/UI Product Designer, Bengaluru</p>
+          </div>
+          <div class="cs-byline-contact">
+            <a href="mailto:smrutirtg@gmail.com">smrutirtg@gmail.com</a>
+            <a href="tel:+919348404629">+91 93484 04629</a>
+            <a href="https://www.linkedin.com/in/smruti-ranjan007" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/SmrutiRanjanPati" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="col-main" style="margin-top:20px;">
+        <section class="card reveal">
+          <h2 class="card-title">The challenge</h2>
+          <div id="csChallenge"></div>
+        </section>
+
+        <section class="card reveal">
+          <h2 class="card-title">Process</h2>
+          <ul class="exp-points" id="csProcess"></ul>
+        </section>
+
+        <section class="card reveal">
+          <h2 class="card-title">The solution</h2>
+          <div id="csSolution"></div>
+          <div class="cs-visual-strip" id="csVisualStrip"></div>
+        </section>
+
+        <section class="card reveal">
+          <h2 class="card-title">Results</h2>
+          <div id="csResults"></div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer" id="contact">
+    <div class="footer-inner">
+      <div>
+        <span class="brand-mark">SR</span>
+        <p class="footer-tag">Designing interfaces for problems that start as spreadsheets.</p>
+      </div>
+      <div class="footer-actions">
+        <a class="btn btn-solid magnetic" href="mailto:smrutirtg@gmail.com">Email me</a>
+        <a class="btn btn-outline magnetic" href="https://www.linkedin.com/in/smruti-ranjan007" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-outline magnetic" href="https://github.com/SmrutiRanjanPati" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <p class="footer-copy">© <span id="year"></span> Smruti Ranjan Pati. Built with care, one design system at a time.</p>
+  </footer>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

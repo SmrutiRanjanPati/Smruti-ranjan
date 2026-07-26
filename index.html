@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Smruti Ranjan UX/UI Product Designer</title>
+    <meta
+      name="description"
+      content="Smruti Ranjan Pati - UX/UI Product Designer specializing in enterprise dashboards, design systems and data-driven interfaces."
+    />
+    <meta name="author" content="Smruti Ranjan Pati" />
+    <meta name="theme-color" content="#0A0B0F" />
+
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Smruti Ranjan - UX/UI Product Designer"
+    />
+    <meta
+      property="og:description"
+      content="Enterprise dashboards, design systems and data-driven interfaces. Contact: smrutirtg@gmail.com · +91 93484 04629."
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="Smruti Ranjan - UX/UI Product Designer"
+    />
+    <meta
+      name="twitter:description"
+      content="Enterprise dashboards, design systems and data-driven interfaces."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      (function () {
+        var saved = localStorage.getItem("sr-theme");
+        var theme =
+          saved ||
+          (window.matchMedia("(prefers-color-scheme: light)").matches
+            ? "light"
+            : "dark");
+        if (theme === "light")
+          document.documentElement.setAttribute("data-theme", "light");
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- Custom cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- Top Nav -->
+    <header class="topnav" id="topnav">
+      <div class="topnav-inner">
+        <a href="#top" class="brand">
+          <span class="brand-mark">SR</span>
+          <span class="brand-name">Smruti Ranjan</span>
+        </a>
+        <nav class="nav-links" id="navLinks">
+          <a href="#about" data-section="about">About</a>
+          <a href="#experience" data-section="experience">Experience</a>
+          <a href="#work" data-section="work">Work</a>
+          <a href="#skills" data-section="skills">Skills</a>
+          <a href="#contact" data-section="contact">Contact</a>
+        </nav>
+        <div class="nav-cta">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            type="button"
+            aria-label="Toggle dark / light mode"
+          >
+            <svg
+              class="icon-sun"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <circle cx="12" cy="12" r="4.5" />
+              <path
+                d="M12 2.5v2.5M12 19v2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M2.5 12H5M19 12h2.5M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"
+              />
+            </svg>
+            <svg
+              class="icon-moon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z" />
+            </svg>
+          </button>
+          <a class="btn btn-ghost magnetic" href="#contact">Connect</a>
+          <a
+            class="btn btn-solid magnetic"
+            href="Smruti_Ranjan_Pati_Resume.pdf"
+            target="_blank"
+            rel="noopener"
+            >Resume</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- PROFILE HEADER (LinkedIn-style banner + identity card) -->
+      <section class="profile-card reveal">
+        <div class="banner">
+          <canvas id="heroCanvas"></canvas>
+          <div class="banner-grid"></div>
+        </div>
+
+        <div class="identity">
+          <div class="avatar-wrap">
+            <div class="avatar">
+              <span>SR</span>
+            </div>
+          </div>
+
+          <div class="identity-text">
+            <div class="identity-name">
+              <h1 class="my-name">Smruti Ranjan Pati</h1>
+            </div>
+            <div class="identity-meta">
+              <p class="headline">
+                UX/UI Product Designer - Enterprise Dashboards &amp; Design
+                Systems
+              </p>
+              <p class="meta-line">
+                <span>Bengaluru, India</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="identity-actions">
+            <a
+              class="btn btn-solid magnetic"
+              href="https://github.com/SmrutiRanjanPati"
+              >LinkedIn</a
+            >
+            <a
+              class="btn btn-outline magnetic"
+              href="https://github.com/SmrutiRanjanPati"
+              target="_blank"
+              rel="noopener"
+              >View GitHub</a
+            >
+          </div>
+        </div>
+
+        <div class="stat-row">
+          <div class="stat" data-count="3">
+            <div>
+              <span class="stat-num" data-target="3">0</span
+              ><span class="stat-suffix">+</span>
+            </div>
+            <span class="stat-label">Years designing</span>
+          </div>
+          <div class="stat" data-count="3">
+            <span class="stat-num" data-target="3">0</span>
+            <span class="stat-label">Companies shipped for</span>
+          </div>
+          <div class="stat" data-count="30">
+            <div>
+              <span class="stat-num" data-target="30">0</span>
+              <span class="stat-suffix">%</span>
+            </div>
+            <span class="stat-label">Faster dev handoff</span>
+          </div>
+          <div class="stat" data-count="25">
+            <div>
+              <span class="stat-num" data-target="25">0</span>
+              <span class="stat-suffix">%</span>
+            </div>
+            <span class="stat-label">Faster task completion</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="layout">
+        <div class="col-main">
+          <!-- ABOUT -->
+          <section class="card reveal" id="about">
+            <h2 class="card-title">About</h2>
+            <p class="about-text">
+              I design interfaces for problems that start as spreadsheets. Over
+              the last three years I've worked on AI-driven dashboards,
+              enterprise design systems and data-heavy tools - taking messy
+              inputs and giving people something they can actually read at a
+              glance.
+            </p>
+            <p class="about-text">
+              I care about the parts of design that don't photograph well:
+              information hierarchy, accessibility, and whether a component
+              library still makes sense a year after launch. I also still write
+              front-end code, which keeps my designs honest about what's
+              buildable.
+            </p>
+            <div class="tag-row">
+              <span class="tag">Design Systems</span>
+              <span class="tag">Data Visualization</span>
+              <span class="tag">Accessibility (WCAG)</span>
+              <span class="tag">Design-to-Code</span>
+            </div>
+          </section>
+
+          <!-- EXPERIENCE -->
+          <section class="card reveal" id="experience">
+            <h2 class="card-title">Experience</h2>
+
+            <div class="exp-item">
+              <div class="exp-logo">DBS</div>
+              <div class="exp-body">
+                <div class="exp-head">
+                  <h3>Junior Consultant</h3>
+                  <span class="exp-date">Nov 2025 - Present</span>
+                </div>
+                <p class="exp-company">
+                  Digitus Business Solution · Bengaluru, India
+                </p>
+                <ul class="exp-points">
+                  <li>
+                    Led end-to-end design strategy for AI-driven dashboards,
+                    turning complex data models into interactive prototypes.
+                  </li>
+                  <li>
+                    Ran user research and usability testing that lifted task
+                    completion speed by 25%.
+                  </li>
+                  <li>
+                    Built and maintained a component-based Design System,
+                    cutting front-end build time by 30%.
+                  </li>
+                  <li>
+                    Acted as design SME, mentoring teams on WCAG accessibility
+                    and user-centred practice.
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-logo">IG</div>
+              <div class="exp-body">
+                <div class="exp-head">
+                  <h3>Software Engineer</h3>
+                  <span class="exp-date">Sep 2023 - Nov 2025</span>
+                </div>
+                <p class="exp-company">Ideagensys · Bengaluru, India</p>
+                <ul class="exp-points">
+                  <li>
+                    Designed interactive data visualizations and complex
+                    dashboards in Figma and Adobe XD.
+                  </li>
+                  <li>
+                    Turned technical requirements into wireframes, journeys and
+                    high-fidelity prototypes.
+                  </li>
+                  <li>
+                    Partnered with engineers on pixel-accurate implementation
+                    across mobile and web.
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-logo">TA</div>
+              <div class="exp-body">
+                <div class="exp-head">
+                  <h3>Software Engineer</h3>
+                  <span class="exp-date">May 2023 - Sep 2023</span>
+                </div>
+                <p class="exp-company">Trueadapt · Bengaluru, India</p>
+                <ul class="exp-points">
+                  <li>
+                    Built visual assets, iconography and layout grids for
+                    responsive web apps.
+                  </li>
+                  <li>
+                    Ran A/B tests and heat-map analysis to fix landing page
+                    conversion issues.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- FEATURED WORK (rendered from case-studies.json - click any card to open it) -->
+          <section class="card reveal" id="work">
+            <h2 class="card-title">Featured Work</h2>
+            <div class="work-grid" id="workGrid">
+              <div class="skeleton-tile"></div>
+              <div class="skeleton-tile"></div>
+              <div class="skeleton-tile"></div>
+              <div class="skeleton-tile"></div>
+            </div>
+            <noscript
+              ><p class="about-text">
+                Enable JavaScript to browse case studies, or view them directly:
+                <a href="case-study.html?id=ai-dashboard"
+                  >AI-Driven Analytics Dashboard</a
+                >,
+                <a href="case-study.html?id=design-system"
+                  >Enterprise Design System</a
+                >,
+                <a href="case-study.html?id=discrepancy-reporting"
+                  >Discrepancy Reporting Suite</a
+                >,
+                <a href="case-study.html?id=metrics-monitor"
+                  >Metrics Refresh Monitor</a
+                >.
+              </p></noscript
+            >
+          </section>
+
+          <!-- SKILLS -->
+          <section class="card reveal" id="skills">
+            <h2 class="card-title">Skills</h2>
+
+            <div class="skill-group">
+              <h4>Design</h4>
+              <div class="pill-row">
+                <span class="pill">UX Research</span>
+                <span class="pill">Usability Testing</span>
+                <span class="pill">Information Architecture</span>
+                <span class="pill">Wireframing</span>
+                <span class="pill">Prototyping</span>
+                <span class="pill">Design Systems</span>
+              </div>
+            </div>
+
+            <div class="skill-group">
+              <h4>Tools</h4>
+              <div class="pill-row">
+                <span class="pill">Figma</span>
+                <span class="pill">Adobe XD</span>
+                <span class="pill">Photoshop</span>
+                <span class="pill">Illustrator</span>
+                <span class="pill">Framer</span>
+                <span class="pill">Sketch</span>
+                <span class="pill">Miro</span>
+              </div>
+            </div>
+
+            <div class="skill-group">
+              <h4>Front-end</h4>
+              <div class="pill-row">
+                <span class="pill">HTML5</span>
+                <span class="pill">CSS3 / Tailwind</span>
+                <span class="pill">JavaScript (ES6+)</span>
+                <span class="pill">React.js</span>
+                <span class="pill">Git</span>
+                <span class="pill">Jira</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- CERTIFICATIONS -->
+          <section class="card reveal" id="certifications">
+            <h2 class="card-title">Certifications</h2>
+            <div class="cert-item">
+              <div class="cert-icon">✓</div>
+              <div>
+                <h3>Liferay BEWL</h3>
+                <p>Building Enterprise Websites with Liferay</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- EDUCATION -->
+          <section class="card reveal" id="education">
+            <h2 class="card-title">Education</h2>
+            <div class="edu-item">
+              <div class="exp-logo">SRM</div>
+              <div>
+                <h3>Master of Computer Applications (MCA)</h3>
+                <p class="exp-company">SRM University · Delhi, India</p>
+                <span class="exp-date">2021 - 2023</span>
+              </div>
+            </div>
+            <div class="edu-item">
+              <div class="exp-logo">GA</div>
+              <div>
+                <h3>Bachelor of Computer Applications (BCA)</h3>
+                <p class="exp-company">
+                  Govt. Autonomous College · Bhawanipatna, India
+                </p>
+                <span class="exp-date">2018 - 2021</span>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- SIDEBAR -->
+        <aside class="col-side">
+          <section class="card side-card reveal">
+            <h2 class="card-title">Contact</h2>
+            <a class="contact-row magnetic" href="mailto:smrutirtg@gmail.com">
+              <span class="contact-icon">✉</span> smrutirtg@gmail.com
+            </a>
+            <a
+              class="contact-row magnetic"
+              href="https://www.linkedin.com/in/smruti-ranjan007"
+              target="_blank"
+              rel="noopener"
+            >
+              <span class="contact-icon">in</span>
+              linkedin.com/in/smruti-ranjan007
+            </a>
+            <a
+              class="contact-row magnetic"
+              href="https://github.com/SmrutiRanjanPati"
+              target="_blank"
+              rel="noopener"
+            >
+              <span class="contact-icon">&lt;/&gt;</span>
+              github.com/SmrutiRanjanPati
+            </a>
+            <a class="contact-row magnetic" href="tel:+919348404629">
+              <span class="contact-icon">☎</span> +91 93484 04629
+            </a>
+          </section>
+
+          <section class="card side-card reveal">
+            <h2 class="card-title">Currently</h2>
+            <p class="side-text">
+              Junior Consultant at Digitus Business Solution, Bengaluru -
+              working on AI-driven dashboards and design systems.
+            </p>
+          </section>
+
+          <section class="card side-card reveal">
+            <h2 class="card-title">Beyond design</h2>
+            <p class="side-text">
+              Two-time Sport Award winner and 1st place Walkathon finisher at
+              Digitus - turns out the same discipline shows up on and off the
+              screen.
+            </p>
+          </section>
+        </aside>
+      </div>
+
+      <footer class="site-footer" id="contact">
+        <div class="footer-inner">
+          <div>
+            <span class="brand-mark">SR</span>
+            <p class="footer-tag">
+              Designing interfaces for problems that start as spreadsheets.
+            </p>
+          </div>
+          <div class="footer-actions">
+            <a class="btn btn-solid magnetic" href="mailto:smrutirtg@gmail.com"
+              >Email me</a
+            >
+            <a
+              class="btn btn-outline magnetic"
+              href="https://www.linkedin.com/in/smruti-ranjan007"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn</a
+            >
+            <a
+              class="btn btn-outline magnetic"
+              href="https://github.com/SmrutiRanjanPati"
+              target="_blank"
+              rel="noopener"
+              >GitHub</a
+            >
+          </div>
+        </div>
+        <p class="footer-copy">
+          © <span id="year"></span> Smruti Ranjan Pati. Built with care, one
+          design system at a time.
+        </p>
+      </footer>
+    </main>
+
+    <!-- Mobile app-style bottom tab bar -->
+    <nav class="tabbar">
+      <a href="#top" class="tab-item active">
+        <i data-lucide="house"></i>
+        <span>Home</span>
+      </a>
+
+      <a href="#experience" class="tab-item">
+        <i data-lucide="briefcase-business"></i>
+        <span>Work</span>
+      </a>
+
+      <a href="#skills" class="tab-item">
+        <i data-lucide="code-xml"></i>
+        <span>Skills</span>
+      </a>
+
+      <a href="#contact" class="tab-item">
+        <i data-lucide="mail"></i>
+        <span>Contact</span>
+      </a>
+    </nav>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

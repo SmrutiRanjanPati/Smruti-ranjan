@@ -1,0 +1,140 @@
+{
+  "site": {
+    "name": "Smruti Ranjan Pati",
+    "role": "UX/UI Product Designer",
+    "location": "Bengaluru, India",
+    "email": "smrutirtg@gmail.com",
+    "phone": "+91 93484 04629",
+    "phoneHref": "+919348404629",
+    "linkedin": "https://www.linkedin.com/in/smruti-ranjan007",
+    "github": "https://github.com/SmrutiRanjanPati"
+  },
+  "caseStudies": [
+    {
+      "id": "ai-dashboard",
+      "title": "AI-Driven Analytics Dashboard",
+      "eyebrow": "Product Design · Data Visualization",
+      "tag": "Product Design · Data Viz",
+      "cardSummary": "Enterprise dashboard translating live data models into an interface non-technical stakeholders could read in seconds.",
+      "summary": "Enterprise stakeholders were making decisions off raw model outputs and static exports. This case study covers how the dashboard was restructured around what people actually needed to decide, not what the data model happened to produce.",
+      "description": "How a procurement dashboard turned live AI-driven data models into an interface non-technical stakeholders could read in seconds, lifting task completion speed 25%.",
+      "role": "Design Lead / SME",
+      "client": "Digitus Business Solution",
+      "timeline": "Nov 2025 – Present",
+      "tools": "Figma, FigJam, Design tokens",
+      "visuals": ["bars", "components", "map"],
+      "challenge": [
+        "The underlying AI models produced rich, constantly-updating outputs, but the existing views presented them as dense tables and static charts. Stakeholders without a data background couldn't tell what had actually changed or what needed action.",
+        "Requests for design changes were arriving faster than the team could absorb them, and every new metric was being bolted onto the layout without a shared structure to hold it."
+      ],
+      "process": [
+        "Sat with stakeholders during live reviews to see exactly where they got stuck reading the existing views.",
+        "Mapped every data model output to the decision it was meant to support, and cut anything that wasn't tied to one.",
+        "Sketched a three-tier information hierarchy - summary, trend, drill-down - so people could go from glance to detail without leaving the screen.",
+        "Built the flow in low-fidelity first, tested it with real stakeholders, then moved to high-fidelity Figma prototypes once the structure held up."
+      ],
+      "solution": [
+        "The dashboard was rebuilt around a modular widget system: KPI summary cards at the top, trend widgets in the middle, and an on-demand drill-down layer underneath for anyone who needed the raw detail.",
+        "Every widget pulled its color, spacing and iconography from the design system built alongside it, so new metrics could be added without a one-off design pass each time."
+      ],
+      "results": [
+        "Usability testing across the new structure showed a 25% increase in user task completion speed compared with the previous layout.",
+        "The three-tier pattern became the reference model other dashboards in the org were built against."
+      ]
+    },
+    {
+      "id": "design-system",
+      "title": "Enterprise Design System",
+      "eyebrow": "Design Systems",
+      "tag": "Design Systems",
+      "cardSummary": "Reusable component library and token set that standardised UI across teams and cut handoff time by 30%.",
+      "summary": "Different product teams had quietly built their own versions of the same button, the same card, the same table row - each slightly inconsistent, each slower to hand off than it needed to be. This is how that got consolidated into one system teams actually adopted.",
+      "description": "Building and rolling out a reusable component library and token set that standardised UI across teams and cut front-end handoff time by 30%.",
+      "role": "Design Systems Owner / SME",
+      "client": "Digitus Business Solution",
+      "timeline": "Nov 2025 – Present",
+      "tools": "Figma (variants & tokens), Storybook-style documentation",
+      "visuals": ["components", "bars", "flow"],
+      "challenge": [
+        "An audit across active products turned up several near-duplicate versions of common components, each with its own spacing and color logic. Front-end handoff meant re-explaining the same decisions project after project.",
+        "Accessibility wasn't consistently considered at the component level, which meant it had to be caught - or missed - late, per project."
+      ],
+      "process": [
+        "Audited existing UI across teams to find which patterns were genuinely reused versus one-offs worth retiring.",
+        "Defined a token layer for color, spacing, and type so every component inherited the same base decisions.",
+        "Built the component library in Figma with documented variants and usage guidance, not just visual states.",
+        "Ran workshops with cross-functional teams as design SME, walking through WCAG accessibility standards baked directly into each component."
+      ],
+      "solution": [
+        "A token-driven component library covering the core UI vocabulary - buttons, cards, form fields, tables, status indicators - each shipped with accessibility behavior already handled.",
+        "Documentation focused on when to use a variant, not just how it looks, so teams could self-serve instead of asking design for every decision."
+      ],
+      "results": [
+        "Reduced front-end development time by roughly 30% by removing repeated one-off component builds.",
+        "Became the shared reference for visual consistency across enterprise-facing products."
+      ]
+    },
+    {
+      "id": "discrepancy-reporting",
+      "title": "Discrepancy Reporting Suite",
+      "eyebrow": "Data Visualization",
+      "tag": "Data Visualization",
+      "cardSummary": "Treemap and bar-chart views built to surface reporting discrepancies at a glance for operations teams.",
+      "summary": "Operations teams were finding discrepancies by scrolling through exported spreadsheets line by line. This case study covers how proportion and severity were made visible at a glance instead.",
+      "description": "Designing treemap and bar-chart views that let operations teams spot reporting discrepancies at a glance instead of scanning raw tabular exports.",
+      "role": "UX/UI Designer",
+      "client": "Ideagensys",
+      "timeline": "Sep 2023 – Nov 2025",
+      "tools": "Figma, Adobe XD",
+      "visuals": ["map", "flow", "bars"],
+      "challenge": [
+        "Reporting discrepancies were being tracked through flat tabular exports. Nothing in the layout communicated which discrepancies were large, small, or urgent - every row looked the same weight.",
+        "Operations teams needed a way to triage at a glance, not read every row before deciding where to look first."
+      ],
+      "process": [
+        "Mapped the existing information architecture to see where severity and volume data already existed but weren't being shown.",
+        "Prototyped a treemap view to encode proportion and a paired bar-chart view for direct comparison between categories.",
+        "Tested different opacity and color-weighting schemes with the operations team to find encodings that read correctly without a legend."
+      ],
+      "solution": [
+        "A treemap surfaced proportion and severity in one view, sized and shaded so the biggest problems were visually the biggest.",
+        "A bar-chart drill-down let the team compare specific categories directly once they'd identified where to look."
+      ],
+      "results": [
+        "Operations teams could identify where to focus without reading through full exports first.",
+        "The treemap/bar-chart pairing was adopted as the standard view for ongoing discrepancy reporting."
+      ]
+    },
+    {
+      "id": "metrics-monitor",
+      "title": "Metrics Refresh Monitor",
+      "eyebrow": "Dashboard Design",
+      "tag": "Dashboard Design",
+      "cardSummary": "Status dashboard for pipeline health, designed around a strict information hierarchy for on-call teams.",
+      "summary": "On-call engineers were finding out about failed metric refreshes only after downstream reports looked wrong. This case study covers how the pipeline's own status was made visible in real time.",
+      "description": "A pipeline-health status dashboard designed around a strict information hierarchy so on-call teams could see refresh failures before they became incidents.",
+      "role": "UX/UI Designer",
+      "client": "Ideagensys",
+      "timeline": "Sep 2023 – Nov 2025",
+      "tools": "Figma, Adobe XD",
+      "visuals": ["flow", "map", "components"],
+      "challenge": [
+        "Metric refresh failures were typically discovered downstream, once a report already looked wrong - not at the source, where the actual failure happened.",
+        "There was no single view of the pipeline's health; engineers pieced it together from logs when something already looked off."
+      ],
+      "process": [
+        "Worked with engineers to map the real pipeline stages - source, transform, refresh, live - so the interface could mirror how the system actually failed.",
+        "Prototyped a node-and-line flow visualization with color-coded states for each stage.",
+        "Iterated the hierarchy so the most urgent state was always the first thing an on-call engineer saw, not buried under healthy-stage noise."
+      ],
+      "solution": [
+        "A status flow view showing each pipeline stage as a node, color-coded by state, so a failure's location was visible immediately rather than inferred from logs.",
+        "Information hierarchy was built specifically around on-call triage: what failed, where, and what depends on it - in that order."
+      ],
+      "results": [
+        "On-call teams could identify failure points faster instead of reconstructing them from logs after the fact.",
+        "Reduced back-and-forth during incident triage by giving everyone the same at-a-glance source of truth."
+      ]
+    }
+  ]
+}
