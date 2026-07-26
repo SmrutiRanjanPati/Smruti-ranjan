@@ -1304,7 +1304,7 @@ main {
 
 /* ============ MOBILE TAB BAR ============ */
 .tabbar {
-  /* display: none; */
+  display: none;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -1317,6 +1317,21 @@ main {
   padding: 8px 6px calc(8px + env(safe-area-inset-bottom));
   justify-content: space-around;
 }
+/* .tab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 10.5px;
+  color: var(--text-faint);
+  padding: 6px 10px;
+  border-radius: 12px;
+  transition:
+    color 0.2s,
+    background 0.2s;
+    overflow: hidden;
+} */
+
 .tab-item{
     display:flex;
     flex-direction:column;
@@ -1340,8 +1355,6 @@ main {
 .tab-item:hover{
     color:var(--cyan);
 }
-
-
 .tab-item svg {
   width: 18px;
   height: 18px;
