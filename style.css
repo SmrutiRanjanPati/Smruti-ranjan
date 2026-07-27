@@ -1317,20 +1317,7 @@ main {
   padding: 8px 6px calc(8px + env(safe-area-inset-bottom));
   justify-content: space-around;
 }
-/* .tab-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  font-size: 10.5px;
-  color: var(--text-faint);
-  padding: 6px 10px;
-  border-radius: 12px;
-  transition:
-    color 0.2s,
-    background 0.2s;
-    overflow: hidden;
-} */
+
 
 .tab-item {
   display: flex;
@@ -1380,6 +1367,9 @@ main {
   .nav-links {
     display: none;
   }
+     .tabbar {
+    display: flex;
+  }
 }
 
 @media (max-width: 760px) {
@@ -1416,6 +1406,9 @@ main {
   }
   .stat:nth-child(2n) {
     border-right: none;
+  }
+    .tabbar {
+    display: flex;
   }
 }
 
