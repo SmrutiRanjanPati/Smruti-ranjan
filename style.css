@@ -2,12 +2,12 @@
 :root {
   --void: #0a0b0f;
   --surface: #14161d;
-  --surface-2: #1b1e28;
+  --surface-2: #1e2026;
   --surface-3: #20232f;
   --text: #edeef2;
-  --text-muted: #8b90a0;
-  --text-faint: #5b606f;
-  --violet: #6c5ce7;
+  --text-muted: #f5f8ff;
+  --text-faint: #dde6ff;
+  --violet: #7014fa;
   --violet-soft: rgba(108, 92, 231, 0.16);
   --cyan: #00e5c7;
   --amber: #ff8a4c;
@@ -35,14 +35,14 @@
 [data-theme="light"] {
   --void: #f3f4f9;
   --surface: #ffffff;
-  --surface-2: #f1f2f8;
+  --surface-2: #f5f6ff;
   --surface-3: #e7e9f2;
   --text: #14161d;
   --text-muted: #585d6f;
   --text-faint: #8b90a0;
-  --violet: #5b4bdb;
+  --violet: #161eff;
   --violet-soft: rgba(91, 75, 219, 0.1);
-  --cyan: #049984;
+  --cyan: #03b400;
   --amber: #d9631f;
   --border: rgba(20, 22, 29, 0.08);
   --border-strong: rgba(20, 22, 29, 0.15);
@@ -394,6 +394,24 @@ main {
   top: 90px;
 }
 
+
+.profile-image {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    object-position:top;
+    border-radius: 26px;
+    background: linear-gradient(150deg, var(--violet), #322a83 70%);
+    border: 4px solid var(--surface);
+    display: grid;
+    place-items: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 34px;
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
 /* ============ CARDS ============ */
 .card,
 .profile-card {
@@ -487,33 +505,6 @@ main {
   grid-template-columns: auto 1fr auto;
   gap: 24px;
   align-items: start;
-}
-.avatar-wrap {
-  position: relative;
-}
-.avatar {
-  width: 104px;
-  height: 104px;
-  border-radius: 26px;
-  background: linear-gradient(150deg, var(--violet), #322a83 70%);
-  border: 4px solid var(--surface);
-  display: grid;
-  place-items: center;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 34px;
-  color: #fff;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-}
-.avatar-status {
-  position: absolute;
-  bottom: 6px;
-  right: 6px;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--cyan);
-  border: 3px solid var(--surface);
 }
 .identity-text {
   height: 100%;
@@ -1068,7 +1059,7 @@ main {
 /* ============ FOOTER ============ */
 .site-footer {
   margin-top: 20px;
-  padding: 36px 28px 24px;
+  padding: 20px 0px 10px;
   border-top: 1px solid var(--border);
 }
 .footer-inner {
