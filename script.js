@@ -2,6 +2,14 @@
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+// ============ REDUCED MOTION PREFERENCE ============
+// Used to skip purely decorative, JS-driven motion (the 3D hero scene,
+// magnetic buttons, tilt, custom cursor tracking) for people who've asked
+// their OS for less motion. CSS transitions/animations already respect this
+// via the prefers-reduced-motion media query in style.css - this covers the
+// motion that's driven from JS instead.
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 // ============ THEME TOGGLE ============
 // (Initial theme is already applied by the inline blocking script in <head>
 // so there's no flash-of-wrong-theme on load.)
@@ -99,7 +107,7 @@ const cursorDot = document.getElementById('cursorDot');
 const cursorRing = document.getElementById('cursorRing');
 let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
 
-if (cursorDot && cursorRing && window.matchMedia('(hover: hover)').matches) {
+if (cursorDot && cursorRing && !prefersReducedMotion && window.matchMedia('(hover: hover)').matches) {
   window.addEventListener('mousemove', (e) => {
     mouseX = e.clientX; mouseY = e.clientY;
     cursorDot.style.left = mouseX + 'px';
@@ -127,6 +135,7 @@ if (cursorDot && cursorRing && window.matchMedia('(hover: hover)').matches) {
 
 // ============ MAGNETIC BUTTONS ============
 function bindMagnetic(root = document) {
+  if (prefersReducedMotion) return;
   root.querySelectorAll('.magnetic').forEach(btn => {
     if (btn.__magneticBound) return;
     btn.__magneticBound = true;
@@ -142,17 +151,26 @@ function bindMagnetic(root = document) {
 bindMagnetic();
 
 // ============ 3D TILT (cards + work tiles) ============
+// will-change is added only while a tilt interaction is actually happening
+// (rather than permanently in CSS) so the browser isn't holding every card
+// and work tile on its own composited layer all the time - that adds up on
+// long pages, especially on lower-end mobile GPUs.
 function bindTilt(root = document) {
+  if (prefersReducedMotion) return;
   root.querySelectorAll('.card, .work-tile').forEach(card => {
     if (card.__tiltBound) return;
     card.__tiltBound = true;
+    card.addEventListener('mouseenter', () => { card.style.willChange = 'transform'; });
     card.addEventListener('mousemove', (e) => {
       const r = card.getBoundingClientRect();
       const px = (e.clientX - r.left) / r.width - 0.5;
       const py = (e.clientY - r.top) / r.height - 0.5;
       card.style.transform = `perspective(700px) rotateX(${py * -3}deg) rotateY(${px * 3}deg) translateY(-2px)`;
     });
-    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+      card.style.willChange = 'auto';
+    });
   });
 }
 bindTilt();
@@ -201,7 +219,16 @@ function bindCopyButtons(root = document) {
 bindCopyButtons();
 
 // ============ THREE.JS HERO: EXPLODED UI-LAYER STACK ============
-(function initHero() {
+// The banner already shows its CSS gradient + grid background immediately,
+// so the WebGL scene is purely a decorative enhancement on top of it.
+// Two changes here versus before:
+//  1. On prefers-reduced-motion, skip it entirely - the static gradient
+//     banner is what those users see, matching their motion preference.
+//  2. Otherwise, kick it off via requestIdleCallback so it initializes
+//     once the browser is done with more important work (parsing,
+//     first paint, the counters/reveal observers above) instead of
+//     competing with them during the critical load window.
+function initHero() {
   const canvas = document.getElementById('heroCanvas');
   if (!canvas || typeof THREE === 'undefined') return;
 
@@ -304,7 +331,15 @@ bindCopyButtons();
     camera.updateProjectionMatrix();
     renderer.setSize(width, height);
   });
-})();
+}
+
+if (!prefersReducedMotion) {
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(initHero, { timeout: 2000 });
+  } else {
+    setTimeout(initHero, 200);
+  }
+}
 
 // ============ VISUAL MOCK RENDERER (shared by work grid + case study) ============
 function renderVisualMock(type) {

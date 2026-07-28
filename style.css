@@ -154,6 +154,25 @@ ul {
   outline-offset: 3px;
 }
 
+/* ============ SKIP LINK ============ */
+.skip-link {
+  position: fixed;
+  top: -60px;
+  left: 12px;
+  z-index: 10000;
+  background: var(--violet);
+  color: #fff;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 13.5px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  transition: top 0.2s var(--ease);
+}
+.skip-link:focus {
+  top: 12px;
+}
+
 /* ============ CURSOR ============ */
 .cursor-dot,
 .cursor-ring {
@@ -422,7 +441,6 @@ main {
   transition:
     transform 0.1s linear,
     border-color 0.3s;
-  will-change: transform;
 }
 .side-card {
   padding: 22px;
@@ -949,7 +967,8 @@ main {
 .skill-group:last-child {
   margin-bottom: 0;
 }
-.skill-group h4 {
+.skill-group h4,
+.skill-group h3 {
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -1126,7 +1145,7 @@ main {
   max-width: 62ch;
   margin-bottom: 24px;
 }
-ṅ .cs-meta-grid {
+.cs-meta-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 18px;

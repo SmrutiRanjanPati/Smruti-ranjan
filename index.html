@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="./assets/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico" />
     <link rel="apple-touch-icon" href="./assets/favicon.ico" />
     <title>Smruti Ranjan - UX/UI Product Designer</title>
     <meta
@@ -16,8 +16,13 @@
     />
     <meta name="author" content="Smruti Ranjan Pati" />
     <meta name="theme-color" content="#0A0B0F" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://smrutiranjanpati.github.io/Smruti-ranjan/" />
 
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://smrutiranjanpati.github.io/Smruti-ranjan/" />
     <meta
       property="og:title"
       content="Smruti Ranjan - UX/UI Product Designer"
@@ -26,6 +31,7 @@
       property="og:description"
       content="Enterprise dashboards, design systems and data-driven interfaces. connect: smrutirtg@gmail.com · +91 93484 04629."
     />
+    <meta property="og:image" content="https://smrutiranjanpati.github.io/Smruti-ranjan/assets/Smruti_Ranjan.webp" />
     <meta name="twitter:card" content="summary" />
     <meta
       name="twitter:title"
@@ -35,17 +41,57 @@
       name="twitter:description"
       content="Enterprise dashboards, design systems and data-driven interfaces."
     />
+    <meta name="twitter:image" content="https://smrutiranjanpati.github.io/Smruti-ranjan/assets/Smruti_Ranjan.webp" />
+
+    <!-- Structured data: helps search engines understand who this page is about -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Smruti Ranjan Pati",
+      "jobTitle": "UX/UI Product Designer",
+      "url": "https://smrutiranjanpati.github.io/Smruti-ranjan/",
+      "email": "mailto:smrutirtg@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bengaluru",
+        "addressCountry": "IN"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/smruti-ranjan007",
+        "https://github.com/SmrutiRanjanPati"
+      ]
+    }
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+    <link rel="preconnect" href="https://unpkg.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+
+    <!--
+      Font Awesome is only used for 4 small icons in the sidebar. Loading its
+      full stylesheet render-blocking costs far more than it's worth, so we
+      load it asynchronously (preload as a low-priority fetch, then swap it
+      to an active stylesheet once it arrives) and keep a <noscript> fallback
+      for the rare case JS is disabled.
+    -->
     <link
-      rel="stylesheet"
+      rel="preload"
+      as="style"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      />
+    </noscript>
 
     <link rel="stylesheet" href="style.css" />
     <script>
@@ -62,9 +108,12 @@
     </script>
   </head>
   <body>
-    <!-- Custom cursor -->
-    <div class="cursor-dot" id="cursorDot"></div>
-    <div class="cursor-ring" id="cursorRing"></div>
+    <!-- Visually hidden until focused - lets keyboard/screen-reader users jump past the header -->
+    <a href="#top" class="skip-link">Skip to main content</a>
+
+    <!-- Custom cursor (decorative only) -->
+    <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+    <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
 
     <!-- Top Nav -->
     <header class="topnav" id="topnav">
@@ -73,7 +122,7 @@
           <span class="brand-mark">SR</span>
           <span class="brand-name">Smruti Ranjan</span>
         </a>
-        <nav class="nav-links" id="navLinks">
+        <nav class="nav-links" id="navLinks" aria-label="Primary">
           <a href="#about" data-section="about">About</a>
           <a href="#experience" data-section="experience">Experience</a>
           <a href="#work" data-section="work">Work</a>
@@ -94,6 +143,7 @@
               stroke="currentColor"
               stroke-width="2"
               stroke-linecap="round"
+              aria-hidden="true"
             >
               <circle cx="12" cy="12" r="4.5" />
               <path
@@ -108,6 +158,7 @@
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
+              aria-hidden="true"
             >
               <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z" />
             </svg>
@@ -127,14 +178,22 @@
       <!-- PROFILE HEADER (LinkedIn-style banner + identity card) -->
       <section class="profile-card reveal">
         <div class="banner">
-          <canvas id="heroCanvas"></canvas>
+          <canvas id="heroCanvas" aria-hidden="true"></canvas>
           <div class="banner-grid"></div>
         </div>
 
         <div class="identity">
           <div class="avatar-wrap">
             <div class="avatar">
-              <img  class="profile-image" src="./assets/Smruti_Ranjan.webp" alt="profile"/>
+              <img
+                class="profile-image"
+                src="./assets/Smruti_Ranjan.webp"
+                alt="Portrait of Smruti Ranjan Pati"
+                width="90"
+                height="90"
+                fetchpriority="high"
+                decoding="async"
+              />
             </div>
           </div>
 
@@ -236,6 +295,10 @@
                 class="exp-logo"
                 src="./assets/digitus.webp"
                 alt="Digitus Business Solutions"
+                width="46"
+                height="46"
+                loading="lazy"
+                decoding="async"
               />
               <div class="exp-body">
                 <div class="exp-head">
@@ -271,6 +334,10 @@
                 class="exp-logo"
                 src="./assets/ideagensys.webp"
                 alt="Ideagensys"
+                width="46"
+                height="46"
+                loading="lazy"
+                decoding="async"
               />
               <div class="exp-body">
                 <div class="exp-head">
@@ -347,10 +414,10 @@
 
           <!-- SKILLS -->
           <section class="card reveal" id="skills">
-            <h3 class="card-title">Skills</h3>
+            <h2 class="card-title">Skills</h2>
 
             <div class="skill-group">
-              <h4>Design</h4>
+              <h3>Design</h3>
               <div class="pill-row">
                 <span class="pill">UX Research</span>
                 <span class="pill">Usability Testing</span>
@@ -362,7 +429,7 @@
             </div>
 
             <div class="skill-group">
-              <h4>Tools</h4>
+              <h3>Tools</h3>
               <div class="pill-row">
                 <span class="pill">Figma</span>
                 <span class="pill">Adobe XD</span>
@@ -375,7 +442,7 @@
             </div>
 
             <div class="skill-group">
-              <h4>Front-end</h4>
+              <h3>Front-end</h3>
               <div class="pill-row">
                 <span class="pill">HTML5</span>
                 <span class="pill">CSS3 / Tailwind</span>
@@ -395,6 +462,10 @@
                 class="exp-logo"
                 src="./assets/liferay-logo.webp"
                 alt="Liferay Inc."
+                width="46"
+                height="46"
+                loading="lazy"
+                decoding="async"
               />
               <div>
                 <h3>Liferay BEWL</h3>
@@ -439,7 +510,7 @@
               rel="noopener"
             >
               <span class="connect-icon">
-                <i class="fas fa-envelope"></i>
+                <i class="fas fa-envelope" aria-hidden="true"></i>
               </span>
               <span>smrutirtg@gmail.com</span>
             </a>
@@ -451,7 +522,7 @@
               rel="noopener"
             >
               <span class="connect-icon">
-                <i class="fab fa-linkedin-in"></i>
+                <i class="fab fa-linkedin-in" aria-hidden="true"></i>
               </span>
               <span>linkedin.com/in/smruti-ranjan007</span>
             </a>
@@ -463,14 +534,14 @@
               rel="noopener"
             >
               <span class="connect-icon">
-                <i class="fab fa-github"></i>
+                <i class="fab fa-github" aria-hidden="true"></i>
               </span>
               <span>github.com/SmrutiRanjanPati</span>
             </a>
 
             <a class="connect-row magnetic" href="tel:+919348404629">
               <span class="connect-icon">
-                <i class="fas fa-phone-alt"></i>
+                <i class="fas fa-phone-alt" aria-hidden="true"></i>
               </span>
               <span>+91 93484 04629</span>
             </a>
@@ -531,31 +602,31 @@
     </main>
 
     <!-- Mobile app-style bottom tab bar -->
-    <nav class="tabbar">
+    <nav class="tabbar" aria-label="Mobile">
       <a href="#top" class="tab-item active">
-        <i data-lucide="house"></i>
+        <i data-lucide="house" aria-hidden="true"></i>
         <span>Home</span>
       </a>
 
       <a href="#experience" class="tab-item">
-        <i data-lucide="briefcase-business"></i>
+        <i data-lucide="briefcase-business" aria-hidden="true"></i>
         <span>Work</span>
       </a>
 
       <a href="#skills" class="tab-item">
-        <i data-lucide="code-xml"></i>
+        <i data-lucide="code-xml" aria-hidden="true"></i>
         <span>Skills</span>
       </a>
 
       <a href="#connect" class="tab-item">
-        <i data-lucide="mail"></i>
+        <i data-lucide="mail" aria-hidden="true"></i>
         <span>connect</span>
       </a>
     </nav>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="script.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="https://unpkg.com/lucide@1.27.0"></script>
     <script>
       lucide.createIcons();
     </script>
