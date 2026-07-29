@@ -47,7 +47,7 @@ if (topnav) {
 }
 
 // ============ ACTIVE SECTION TRACKING (nav + tabbar) ============
-const sections = ['top','about','experience','work','skills','contact'];
+const sections = ['top','about','Career','work','skills','contact'];
 const navLinks = document.querySelectorAll('.nav-links a');
 const tabItems = document.querySelectorAll('.tab-item');
 
