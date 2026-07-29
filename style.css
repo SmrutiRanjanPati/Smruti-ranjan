@@ -546,7 +546,7 @@ main {
   justify-content: center;
 }
 .headline {
-  font-size: 15px;
+  font-size: 14px;
   color: var(--text-muted);
 }
 .meta-line {
@@ -602,7 +602,7 @@ main {
 /* ============ ABOUT ============ */
 .about-text {
   margin-bottom: 12px;
-  font-size: 15px;
+  font-size: 14px;
 }
 .tag-row {
   display: flex;
@@ -840,12 +840,12 @@ main {
   margin-bottom: 6px;
 }
 .work-info p {
-  font-size: 13.5px;
+  font-size: 12px;
   margin-bottom: 10px;
 }
 .work-tag {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   color: var(--violet);
 }
 
@@ -983,7 +983,8 @@ main {
   gap: 8px;
 }
 .pill {
-  font-size: 13px;
+  font-size: 12px;
+  font-weight: 600;
   padding: 7px 14px;
   border-radius: 999px;
   border: 1px solid var(--border);
@@ -1030,15 +1031,15 @@ main {
   margin-bottom: 3px;
 }
 .cert-item p {
-  font-size: 13.5px;
+  font-size: 14px;
 }
 .edu-item p {
-  font-size: 13.5px;
+  font-size: 14px;
   margin-bottom: 3px;
 }
 .edu-item span {
   font-family: var(--font-mono);
-  font-size: 11.5px;
+  font-size: 12px;
   color: var(--text-faint);
 }
 
@@ -1071,7 +1072,7 @@ main {
   flex: none;
 }
 .side-text {
-  font-size: 13.5px;
+  font-size: 14px;
   line-height: 1.6;
 }
 
@@ -1090,7 +1091,7 @@ main {
   margin-bottom: 20px;
 }
 .footer-tag {
-  font-size: 13.5px;
+  font-size: 14px;
   margin-top: 10px;
   max-width: 280px;
 }
@@ -1141,7 +1142,7 @@ main {
   max-width: 20ch;
 }
 .cs-hero > .about-text {
-  font-size: 16px;
+  font-size: 14px;
   max-width: 62ch;
   margin-bottom: 24px;
 }
