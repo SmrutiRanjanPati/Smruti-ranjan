@@ -413,22 +413,21 @@ main {
   top: 90px;
 }
 
-
 .profile-image {
-    width: 90px;
-    height: 90px;
-    object-fit: cover;
-    object-position:top;
-    border-radius: 26px;
-    background: linear-gradient(150deg, var(--violet), #322a83 70%);
-    border: 4px solid var(--surface);
-    display: grid;
-    place-items: center;
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 34px;
-    color: #fff;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 26px;
+  background: linear-gradient(150deg, var(--violet), #322a83 70%);
+  border: 4px solid var(--surface);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 34px;
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
 /* ============ CARDS ============ */
@@ -1229,12 +1228,21 @@ main {
   flex-wrap: wrap;
   padding-top: 22px;
   border-top: 1px solid var(--border);
+  justify-content: space-between;
+}
+.cs-byline-author{
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 .cs-byline .avatar {
   width: 46px;
   height: 46px;
   border-radius: 13px;
   font-size: 15px;
+}
+.cs-byline-text-new{
+  font-size: 14px;
 }
 .cs-byline-text h4 {
   font-size: 14.5px;
@@ -1328,7 +1336,6 @@ main {
   justify-content: space-around;
 }
 
-
 .tab-item {
   display: flex;
   flex-direction: column;
@@ -1377,7 +1384,7 @@ main {
   .nav-links {
     display: none;
   }
-     .tabbar {
+  .tabbar {
     display: flex;
   }
 }
@@ -1417,7 +1424,7 @@ main {
   .stat:nth-child(2n) {
     border-right: none;
   }
-    .tabbar {
+  .tabbar {
     display: flex;
   }
 }
@@ -1509,4 +1516,18 @@ main {
   .cs-meta-grid {
     grid-template-columns: 1fr;
   }
+}
+
+.avatar {
+  background-color: var(--surface-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 1px var(--border);
+}
+.avatar span {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--text);
 }

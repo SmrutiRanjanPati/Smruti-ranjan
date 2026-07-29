@@ -53,7 +53,7 @@
       "role": "Design Systems Owner / SME",
       "client": "Digitus Business Solution",
       "timeline": "Nov 2025 – Present",
-      "tools": "Figma (variants & tokens), Storybook-style documentation",
+      "tools": "Figma",
       "visuals": ["components", "bars", "flow"],
       "challenge": [
         "An audit across active products turned up several near-duplicate versions of common components, each with its own spacing and color logic. Front-end handoff meant re-explaining the same decisions project after project.",
