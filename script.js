@@ -3,7 +3,7 @@ const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 // ============ REDUCED MOTION PREFERENCE ============
-// Used to skip purely decorative, JS-driven motion (the 3D hero scene,
+// Used to skip purely decorative, JS-driven motion (the hero globe,
 // magnetic buttons, tilt, custom cursor tracking) for people who've asked
 // their OS for less motion. CSS transitions/animations already respect this
 // via the prefers-reduced-motion media query in style.css - this covers the
@@ -217,129 +217,6 @@ function bindCopyButtons(root = document) {
   });
 }
 bindCopyButtons();
-
-// ============ THREE.JS HERO: EXPLODED UI-LAYER STACK ============
-// The banner already shows its CSS gradient + grid background immediately,
-// so the WebGL scene is purely a decorative enhancement on top of it.
-// Two changes here versus before:
-//  1. On prefers-reduced-motion, skip it entirely - the static gradient
-//     banner is what those users see, matching their motion preference.
-//  2. Otherwise, kick it off via requestIdleCallback so it initializes
-//     once the browser is done with more important work (parsing,
-//     first paint, the counters/reveal observers above) instead of
-//     competing with them during the critical load window.
-function initHero() {
-  const canvas = document.getElementById('heroCanvas');
-  if (!canvas || typeof THREE === 'undefined') return;
-
-  const banner = canvas.parentElement;
-  let width = banner.clientWidth, height = banner.clientHeight;
-
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
-  camera.position.set(0, 0.4, 7);
-
-  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.setSize(width, height);
-
-  const group = new THREE.Group();
-  scene.add(group);
-
-  const layerColors = [0x6c5ce7, 0x00e5c7, 0xff8a4c, 0x6c5ce7];
-  const panels = [];
-  const panelCount = 5;
-
-  for (let i = 0; i < panelCount; i++) {
-    const geo = new THREE.PlaneGeometry(2.6, 1.6);
-    const mat = new THREE.MeshBasicMaterial({
-      color: layerColors[i % layerColors.length],
-      transparent: true,
-      opacity: 0.16,
-      side: THREE.DoubleSide,
-    });
-    const mesh = new THREE.Mesh(geo, mat);
-
-    const edges = new THREE.EdgesGeometry(geo);
-    const line = new THREE.LineSegments(
-      edges,
-      new THREE.LineBasicMaterial({ color: layerColors[i % layerColors.length], transparent: true, opacity: 0.55 })
-    );
-    mesh.add(line);
-
-    const compCount = 2 + (i % 3);
-    for (let c = 0; c < compCount; c++) {
-      const cw = 0.3 + Math.random() * 0.6;
-      const ch = 0.12 + Math.random() * 0.18;
-      const cgeo = new THREE.PlaneGeometry(cw, ch);
-      const cmat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.12 });
-      const cmesh = new THREE.Mesh(cgeo, cmat);
-      cmesh.position.set((Math.random() - 0.5) * 1.8, (Math.random() - 0.5) * 1, 0.01);
-      mesh.add(cmesh);
-    }
-
-    mesh.position.z = (i - (panelCount - 1) / 2) * 0.55;
-    mesh.userData.baseZ = mesh.position.z;
-    mesh.userData.floatOffset = Math.random() * Math.PI * 2;
-    group.add(mesh);
-    panels.push(mesh);
-  }
-
-  group.rotation.x = -0.15;
-  group.rotation.y = 0.35;
-
-  let targetRotX = group.rotation.x;
-  let targetRotY = group.rotation.y;
-  let explode = 0;
-
-  banner.addEventListener('mousemove', (e) => {
-    const r = banner.getBoundingClientRect();
-    const px = (e.clientX - r.left) / r.width - 0.5;
-    const py = (e.clientY - r.top) / r.height - 0.5;
-    targetRotY = 0.35 + px * 0.6;
-    targetRotX = -0.15 - py * 0.4;
-  });
-
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    explode = Math.max(0, Math.min(1, scrollY / 500));
-  }, { passive: true });
-
-  const clock = new THREE.Clock();
-
-  function animate() {
-    requestAnimationFrame(animate);
-    const t = clock.getElapsedTime();
-
-    group.rotation.x += (targetRotX - group.rotation.x) * 0.04;
-    group.rotation.y += (targetRotY - group.rotation.y) * 0.04;
-    group.rotation.y += 0.0009;
-
-    panels.forEach((mesh) => {
-      const spread = 1 + explode * 1.8;
-      mesh.position.z = mesh.userData.baseZ * spread;
-      mesh.position.y = Math.sin(t * 0.6 + mesh.userData.floatOffset) * 0.05;
-    });
-
-    renderer.render(scene, camera);
-  }
-  animate();
-
-  window.addEventListener('resize', () => {
-    width = banner.clientWidth; height = banner.clientHeight;
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
-    renderer.setSize(width, height);
-  });
-}
-
-if (!prefersReducedMotion) {
-  if ('requestIdleCallback' in window) {
-    requestIdleCallback(initHero, { timeout: 2000 });
-  } else {
-    setTimeout(initHero, 200);
-  }
-}
 
 // ============ VISUAL MOCK RENDERER (shared by work grid + case study) ============
 function renderVisualMock(type) {
