@@ -1578,7 +1578,7 @@ main {
 
   .stat-row {
     grid-template-columns: repeat(2, 1fr);
-    margin: 24px 0px 0;
+    margin:0px;
   }
 
   .stat {
@@ -1641,7 +1641,7 @@ main {
 
   .stat-row {
     grid-template-columns: repeat(2, 1fr);
-    margin: 20px 0px 0;
+    margin: 0px;
   }
 
   .stat {
@@ -1783,7 +1783,7 @@ main {
 }
 
 @media (max-width: 760px) {
-  .dino-game-wrap { margin: 24px 4px; }
+  .dino-game-wrap { margin: 24px 0px 0px 0px; }
   #dinoCanvas { height: 80px; }
 
   #dinoScore {
@@ -1796,6 +1796,6 @@ main {
 }
 
 @media (max-width: 600px) {
-  .dino-game-wrap { margin: 20px 0px; }
+  .dino-game-wrap { margin: 20px  0px 0px; }
   #dinoCanvas { height: 80px; }
 }

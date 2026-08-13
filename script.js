@@ -445,7 +445,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 });
 
 // ── Disable right-click context menu ──
-// document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('contextmenu', e => e.preventDefault());
 
 // ============ DINO GAME — Complete Rewrite ============
 (function initDinoGame() {
