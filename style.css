@@ -613,7 +613,7 @@ main {
 .stat-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  margin: 28px 32px 0;
+  margin: 0px;
   border-top: 1px solid var(--border);
 }
 
@@ -1075,6 +1075,9 @@ main {
   border-radius: 999px;
   border: 1px solid var(--border);
   color: var(--text-muted);
+   display: inline-flex;
+   align-items: center;
+   gap: 7px;
   transition:
     color 0.2s,
     border-color 0.2s,
@@ -1085,6 +1088,11 @@ main {
   color: var(--void);
   background: var(--cyan);
   border-color: var(--cyan);
+}
+
+.pill i { 
+   font-size: 0.8em;
+  opacity: 0.8;
 }
 
 /* ============ CERTIFICATIONS / EDUCATION ============ */
@@ -1570,7 +1578,7 @@ main {
 
   .stat-row {
     grid-template-columns: repeat(2, 1fr);
-    margin: 24px 24px 0;
+    margin: 24px 0px 0;
   }
 
   .stat {
@@ -1633,7 +1641,7 @@ main {
 
   .stat-row {
     grid-template-columns: repeat(2, 1fr);
-    margin: 20px 20px 0;
+    margin: 20px 0px 0;
   }
 
   .stat {
@@ -1708,4 +1716,86 @@ main {
   font-weight: 700;
   font-size: 18px;
   color: var(--text);
+}
+
+
+
+
+
+/* ============ DINO GAME ============ */
+.dino-game-wrap {
+  border-top: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  background: var(--surface);
+  user-select: none;
+}
+
+#dinoCanvas {
+  display: block;
+  width: 100%;
+  height: 100px;
+  cursor: pointer;
+}
+
+.dino-hint {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dino-jump-btn {
+  background: var(--surface-2);
+  border: 1px solid var(--border-strong);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  display: none; /* shown only on touch */
+}
+
+.dino-jump-btn:hover { color: var(--cyan); border-color: var(--cyan); }
+
+.dino-score-display {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-faint);
+}
+
+
+
+#dinoScore {
+  position: absolute;
+  top: -45px;
+  width: 55px;
+  right: -3px;
+  z-index: 10;
+}
+@media (hover: none) {
+  .dino-jump-btn { display: inline-flex; }
+}
+
+@media (max-width: 760px) {
+  .dino-game-wrap { margin: 24px 4px; }
+  #dinoCanvas { height: 80px; }
+
+  #dinoScore {
+  position: absolute;
+  top: -35px;
+  width: 55px;
+  right: -3px;
+  z-index: 10;
+}
+}
+
+@media (max-width: 600px) {
+  .dino-game-wrap { margin: 20px 0px; }
+  #dinoCanvas { height: 80px; }
 }

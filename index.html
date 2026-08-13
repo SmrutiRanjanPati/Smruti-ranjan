@@ -102,8 +102,8 @@
       </a>
       <nav class="nav-links" id="navLinks" aria-label="Primary">
         <a href="#about" data-section="about">About</a>
-        <a href="#Career" data-section="Career">Career</a>
         <a href="#work" data-section="work">Work</a>
+        <a href="#Career" data-section="Career">Career</a>
         <a href="#skills" data-section="skills">Skills</a>
         <a href="#connect" data-section="contact">Connect</a>
       </nav>
@@ -161,6 +161,15 @@
             rel="noopener">LinkedIn</a>
           <a class="btn btn-outline magnetic" href="https://github.com/SmrutiRanjanPati" target="_blank"
             rel="noopener">View GitHub</a>
+        </div>
+      </div>
+
+      <!-- DINO GAME -->
+      <div class="dino-game-wrap">
+        <canvas id="dinoCanvas" aria-label="Dino jump game — press Space or tap to jump"></canvas>
+        <div class="dino-hint">
+          <span class="dino-score-display" id="dinoScore">HI 00000</span>
+          <!-- <button class="dino-jump-btn" id="dinoJumpBtn" aria-label="Jump">▲ Jump</button> -->
         </div>
       </div>
 
@@ -325,42 +334,59 @@
 
         <!-- SKILLS -->
         <section class="card reveal" id="skills">
-          <h2 class="card-title">Skills</h2>
+          <h2 class="card-title">
+            Skills
+          </h2>
 
+          <!-- Design -->
           <div class="skill-group">
-            <h3>Design</h3>
+            <h3>
+              <i class="fa-solid fa-pen-ruler"></i>
+              Design
+            </h3>
+
             <div class="pill-row">
-              <span class="pill">UX Research</span>
-              <span class="pill">Usability Testing</span>
-              <span class="pill">Information Architecture</span>
-              <span class="pill">Wireframing</span>
-              <span class="pill">Prototyping</span>
-              <span class="pill">Design Systems</span>
+              <span class="pill"><i class="fa-solid fa-magnifying-glass"></i> UX Research</span>
+              <span class="pill"><i class="fa-solid fa-flask"></i> Usability Testing</span>
+              <span class="pill"><i class="fa-solid fa-sitemap"></i> Information Architecture</span>
+              <span class="pill"><i class="fa-solid fa-object-group"></i> Wireframing</span>
+              <span class="pill"><i class="fa-solid fa-bezier-curve"></i> Prototyping</span>
+              <span class="pill"><i class="fa-solid fa-palette"></i> Design Systems</span>
             </div>
           </div>
 
+          <!-- Tools -->
           <div class="skill-group">
-            <h3>Tools</h3>
+            <h3>
+              <i class="fa-solid fa-toolbox"></i>
+              Tools
+            </h3>
+
             <div class="pill-row">
-              <span class="pill">Figma</span>
-              <span class="pill">Adobe XD</span>
-              <span class="pill">Photoshop</span>
-              <span class="pill">Illustrator</span>
-              <span class="pill">Framer</span>
-              <span class="pill">Sketch</span>
-              <span class="pill">Miro</span>
+              <span class="pill"><i class="fa-brands fa-figma"></i> Figma</span>
+              <span class="pill"><i class="fa-solid fa-pen-nib"></i> Adobe XD</span>
+              <span class="pill"><i class="fa-solid fa-image"></i> Photoshop</span>
+              <span class="pill"><i class="fa-solid fa-vector-square"></i> Illustrator</span>
+              <span class="pill"><i class="fa-solid fa-wand-magic-sparkles"></i> Framer</span>
+              <span class="pill"><i class="fa-brands fa-sketch"></i> Sketch</span>
+              <span class="pill"><i class="fa-solid fa-diagram-project"></i> Miro</span>
             </div>
           </div>
 
+          <!-- Front-end -->
           <div class="skill-group">
-            <h3>Front-end</h3>
+            <h3>
+              <i class="fa-solid fa-code"></i>
+              Front-end
+            </h3>
+
             <div class="pill-row">
-              <span class="pill">HTML5</span>
-              <span class="pill">CSS3 / Tailwind</span>
-              <span class="pill">JavaScript (ES6+)</span>
-              <span class="pill">React.js</span>
-              <span class="pill">Git</span>
-              <span class="pill">Jira</span>
+              <span class="pill"><i class="fa-brands fa-html5"></i> HTML5</span>
+              <span class="pill"><i class="fa-brands fa-css3-alt"></i> CSS3 / Tailwind</span>
+              <span class="pill"><i class="fa-brands fa-js"></i> JavaScript (ES6+)</span>
+              <span class="pill"><i class="fa-brands fa-react"></i> React.js</span>
+              <span class="pill"><i class="fa-brands fa-git-alt"></i> Git</span>
+              <span class="pill"><i class="fa-solid fa-list-check"></i> Jira</span>
             </div>
           </div>
         </section>
@@ -494,14 +520,14 @@
       <span>Home</span>
     </a>
 
-    <a href="#Career" class="tab-item">
-      <i data-lucide="briefcase-business" aria-hidden="true"></i>
-      <span>Career</span>
-    </a>
-
     <a href="#work" class="tab-item">
       <i data-lucide="folder-open-dot" aria-hidden="true"></i>
       <span>Works</span>
+    </a>
+
+    <a href="#Career" class="tab-item">
+      <i data-lucide="briefcase-business" aria-hidden="true"></i>
+      <span>Career</span>
     </a>
 
     <a href="#skills" class="tab-item">
