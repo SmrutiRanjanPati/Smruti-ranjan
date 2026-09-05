@@ -299,7 +299,7 @@ function visualClassFor(type) {
 const CASE_STUDIES = [
   {
     id: 'customer-care-portal',
-    title: 'Customer Care Portal',
+    title: 'Customer Care Portal (CCP)',
     tag: 'Enterprise UX · Manufacturing',
     cardSummary: 'A centralized B2B portal turning email-and-spreadsheet complaint handling into a traceable, role-based 8D resolution workflow.',
     visual: 'flow',
