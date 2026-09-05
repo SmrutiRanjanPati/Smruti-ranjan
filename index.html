@@ -57,13 +57,6 @@
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
 
-  <!--
-      Font Awesome is only used for 4 small icons in the sidebar. Loading its
-      full stylesheet render-blocking costs far more than it's worth, so we
-      load it asynchronously (preload as a low-priority fetch, then swap it
-      to an active stylesheet once it arrives) and keep a <noscript> fallback
-      for the rare case JS is disabled.
-    -->
   <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     onload="
         this.onload = null;
@@ -102,8 +95,8 @@
       </a>
       <nav class="nav-links" id="navLinks" aria-label="Primary">
         <a href="#about" data-section="about">About</a>
-        <!-- <a href="#work" data-section="work">Work</a> -->
         <a href="#Career" data-section="Career">Career</a>
+        <a href="#work" data-section="work">Work</a>
         <a href="#skills" data-section="skills">Skills</a>
         <a href="#connect" data-section="contact">Connect</a>
       </nav>
@@ -169,7 +162,6 @@
         <canvas id="dinoCanvas" aria-label="Dino jump game — press Space or tap to jump"></canvas>
         <div class="dino-hint">
           <span class="dino-score-display" id="dinoScore">HI 00000</span>
-          <!-- <button class="dino-jump-btn" id="dinoJumpBtn" aria-label="Jump">▲ Jump</button> -->
         </div>
       </div>
 
@@ -180,20 +172,23 @@
           </div>
           <span class="stat-label">Years designing</span>
         </div>
-        <div class="stat" data-count="3">
-          <span class="stat-num" data-target="3">0</span>
-          <span class="stat-label">Companies shipped for</span>
-        </div>
-        <div class="stat" data-count="30">
+
+        <div class="stat" data-count="15">
           <div>
-            <span class="stat-num" data-target="30">0</span>
+            <span class="stat-num" data-target="15">0</span><span class="stat-suffix">+</span>
+          </div>
+          <span class="stat-label">Projects worked on</span>
+        </div>
+        <div class="stat" data-count="50">
+          <div>
+            <span class="stat-num" data-target="50">0</span>
             <span class="stat-suffix">%</span>
           </div>
           <span class="stat-label">Faster dev handoff</span>
         </div>
-        <div class="stat" data-count="25">
+        <div class="stat" data-count="30">
           <div>
-            <span class="stat-num" data-target="25">0</span>
+            <span class="stat-num" data-target="30">0</span>
             <span class="stat-suffix">%</span>
           </div>
           <span class="stat-label">Faster task completion</span>
@@ -227,26 +222,6 @@
             <span class="tag">Design-to-Code</span>
           </div>
         </section>
-
-        <!-- FEATURED WORK (rendered from case-studies.json - click any card to open it) -->
-        <!-- <section class="card reveal" id="work">
-          <h2 class="card-title">Featured Work</h2>
-          <div class="work-grid" id="workGrid">
-            <div class="skeleton-tile"></div>
-            <div class="skeleton-tile"></div>
-            <div class="skeleton-tile"></div>
-            <div class="skeleton-tile"></div>
-          </div>
-          <noscript>
-            <p class="about-text">
-              Enable JavaScript to browse case studies, or view them directly:
-              <a href="case-study.html?id=ai-dashboard">AI-Driven Analytics Dashboard</a>,
-              <a href="case-study.html?id=design-system">Enterprise Design System</a>,
-              <a href="case-study.html?id=discrepancy-reporting">Discrepancy Reporting Suite</a>,
-              <a href="case-study.html?id=metrics-monitor">Metrics Refresh Monitor</a>.
-            </p>
-          </noscript>
-        </section> -->
 
         <!-- Career -->
         <section class="card reveal" id="Career">
@@ -331,6 +306,24 @@
             </div>
           </div>
         </section>
+
+        <!-- FEATURED WORK (hardcoded case studies, each its own page — 4 per view, paginated) -->
+        <section class="card reveal" id="work">
+          <h2 class="card-title">Featured Work</h2>
+          <div class="work-grid" id="workGrid"></div>
+          <div class="pagination" id="workPagination"></div>
+          <noscript>
+            <p class="about-text">
+              Enable JavaScript to browse case studies, or view them directly:
+              <a href="customer-care-portal.html">Customer Care Portal</a>,
+              <a href="design-system.html">Enterprise Design System</a>,
+              <a href="discrepancy-reporting.html">Discrepancy Reporting Suite</a>,
+              <a href="metrics-monitor.html">Metrics Refresh Monitor</a>.
+                <a href="metrics-monitor-copy.html">Metrics Refresh Monitor</a>.
+            </p>
+          </noscript>
+        </section>
+
 
         <!-- SKILLS -->
         <section class="card reveal" id="skills">
@@ -520,16 +513,15 @@
       <span>Home</span>
     </a>
 
-    <!-- <a href="#work" class="tab-item">
-      <i data-lucide="folder-open-dot" aria-hidden="true"></i>
-      <span>Works</span>
-    </a> -->
-
     <a href="#Career" class="tab-item">
       <i data-lucide="briefcase-business" aria-hidden="true"></i>
       <span>Career</span>
     </a>
 
+    <a href="#work" class="tab-item">
+      <i data-lucide="folder-open-dot" aria-hidden="true"></i>
+      <span>Work</span>
+    </a>
     <a href="#skills" class="tab-item">
       <i data-lucide="code-xml" aria-hidden="true"></i>
       <span>Skills</span>

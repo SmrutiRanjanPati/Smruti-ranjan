@@ -277,7 +277,7 @@ section {
   border-radius: 9px;
   display: grid;
   place-items: center;
-  background: linear-gradient(145deg, var(--violet), #4b3fd6);
+  background: var(--violet);
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 13px;
@@ -345,8 +345,11 @@ section {
     background 0.2s,
     border-color 0.2s;
   white-space: nowrap;
+  border: none;
+  cursor: pointer;
 }
 
+/* Solid, flat buttons - no gradients anywhere in the UI */
 .btn-solid {
   background: var(--violet);
   color: #fff;
@@ -354,6 +357,8 @@ section {
 }
 
 .btn-solid:hover {
+  background: var(--violet);
+  filter: brightness(1.08);
   box-shadow: 0 8px 26px rgba(108, 92, 231, 0.45);
   transform: translateY(-1px);
 }
@@ -361,6 +366,7 @@ section {
 .btn-outline {
   border: 1px solid var(--border-strong);
   color: var(--text);
+  background: transparent;
 }
 
 .btn-outline:hover {
@@ -370,10 +376,17 @@ section {
 
 .btn-ghost {
   color: var(--text-muted);
+  background: transparent;
 }
 
 .btn-ghost:hover {
   color: var(--text);
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none !important;
 }
 
 /* ============ THEME TOGGLE ============ */
@@ -463,7 +476,7 @@ main {
   object-fit: cover;
   object-position: top;
   border-radius: 26px;
-  background: linear-gradient(150deg, var(--violet), #322a83 70%);
+  background: var(--violet);
   border: 4px solid var(--surface);
   display: grid;
   place-items: center;
@@ -1011,7 +1024,7 @@ main {
   border-color: var(--cyan);
 }
 
-/* Skeleton loading state for JSON-driven grids */
+/* Skeleton loading state for the work grid */
 .skeleton-tile {
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -1040,6 +1053,54 @@ main {
   to {
     transform: translateX(100%);
   }
+}
+
+/* ============ PAGINATION (Featured Work) ============ */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 20px;
+}
+
+.page-btn {
+  min-width: 34px;
+  height: 34px;
+  padding: 0 8px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.page-btn:hover:not(:disabled) {
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+
+.page-btn.active {
+  background: var(--violet);
+  border-color: var(--violet);
+  color: #fff;
+}
+
+.page-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.page-btn svg {
+  width: 15px;
+  height: 15px;
 }
 
 /* ============ SKILLS ============ */
@@ -1268,7 +1329,6 @@ main {
 
 .cs-hero>.about-text {
   font-size: 14px;
-  max-width: 62ch;
   margin-bottom: 24px;
 }
 
@@ -1429,7 +1489,24 @@ main {
   content: none;
 }
 
-/* Loading / empty / error states for JSON-driven content */
+.cs-section {
+  margin-top: 26px;
+  padding-top: 26px;
+  border-top: 1px solid var(--border);
+}
+
+.cs-section:first-of-type {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.cs-section h3 {
+  font-size: 17px;
+  margin-bottom: 12px;
+}
+
+/* Loading / empty / error states for the work grid */
 .cs-state {
   display: flex;
   flex-direction: column;
@@ -1470,6 +1547,223 @@ main {
   gap: 10px;
   justify-content: center;
   margin-top: 6px;
+}
+
+/* ============ GALLERY (view-only screens, no upload) ============ */
+.gallery-note {
+  font-size: 12.5px;
+  color: var(--text-faint);
+  margin-bottom: 14px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.gallery-tile {
+  position: relative;
+  aspect-ratio: 4/3;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+  cursor: pointer;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  transition: border-color 0.2s, transform 0.18s var(--ease);
+}
+
+.gallery-tile:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+}
+
+.gallery-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-tile .placeholder-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding: 0 10px;
+}
+
+.gallery-tile .view-hint {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #fff;
+  background: var(--scrim);
+  opacity: 0;
+  transition: opacity 0.2s var(--ease);
+}
+
+.gallery-tile:hover .view-hint {
+  opacity: 1;
+}
+
+/* Lightbox: view mode only - shows the screen + its description */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--scrim);
+  backdrop-filter: blur(6px);
+}
+
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox-content {
+  width: min(560px, 100%);
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.lightbox-visual {
+  height: 220px;
+  background: var(--surface-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.lightbox-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lightbox-body {
+  padding: 20px 22px 22px;
+  position: relative;
+}
+
+.lightbox-body h4 {
+  font-size: 16px;
+  margin-bottom: 8px;
+  padding-right: 30px;
+}
+
+.lightbox-body p {
+  font-size: 13.5px;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  background: var(--surface-2);
+  color: var(--text-muted);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.lightbox-close:hover {
+  color: var(--cyan);
+  border-color: var(--cyan);
+}
+
+/* ============ MORE CASE STUDIES CAROUSEL ============ */
+.more-cs-viewport {
+  position: relative;
+}
+
+.more-cs-track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.more-cs-track::-webkit-scrollbar {
+  display: none;
+}
+
+.more-cs-card {
+  flex: 0 0 calc(33.333% - 11px);
+  scroll-snap-align: start;
+  min-width: 220px;
+}
+
+.more-cs-nav {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 14px;
+}
+
+.more-cs-arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  background: var(--surface-2);
+  color: var(--text-muted);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.more-cs-arrow:hover:not(:disabled) {
+  color: var(--cyan);
+  border-color: var(--cyan);
+}
+
+.more-cs-arrow:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.more-cs-arrow svg {
+  width: 16px;
+  height: 16px;
+}
+
+@media (max-width: 760px) {
+  .more-cs-card {
+    flex: 0 0 calc(66% - 8px);
+  }
+}
+
+@media (max-width: 460px) {
+  .more-cs-card {
+    flex: 0 0 84%;
+  }
 }
 
 /* ============ MOBILE TAB BAR ============ */
@@ -1718,10 +2012,6 @@ main {
   color: var(--text);
 }
 
-
-
-
-
 /* ============ DINO GAME ============ */
 .dino-game-wrap {
   border-top: 1px solid var(--border);
@@ -1768,8 +2058,6 @@ main {
   font-size: 11px;
   color: var(--text-faint);
 }
-
-
 
 #dinoScore {
   position: absolute;

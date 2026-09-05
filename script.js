@@ -3,16 +3,9 @@ const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 // ============ REDUCED MOTION PREFERENCE ============
-// Used to skip purely decorative, JS-driven motion (the hero globe,
-// magnetic buttons, tilt, custom cursor tracking) for people who've asked
-// their OS for less motion. CSS transitions/animations already respect this
-// via the prefers-reduced-motion media query in style.css - this covers the
-// motion that's driven from JS instead.
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // ============ THEME TOGGLE ============
-// (Initial theme is already applied by the inline blocking script in <head>
-// so there's no flash-of-wrong-theme on load.)
 (function initThemeToggle(){
   const toggle = document.getElementById('themeToggle');
   if (!toggle) return;
@@ -30,7 +23,6 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
     setTimeout(() => toggle.classList.remove('spin'), 350);
   });
 
-  // Keep in sync if the user has multiple tabs open
   window.addEventListener('storage', (e) => {
     if (e.key !== 'sr-theme') return;
     if (e.newValue === 'light') document.documentElement.setAttribute('data-theme', 'light');
@@ -151,10 +143,6 @@ function bindMagnetic(root = document) {
 bindMagnetic();
 
 // ============ 3D TILT (cards + work tiles) ============
-// will-change is added only while a tilt interaction is actually happening
-// (rather than permanently in CSS) so the browser isn't holding every card
-// and work tile on its own composited layer all the time - that adds up on
-// long pages, especially on lower-end mobile GPUs.
 function bindTilt(root = document) {
   if (prefersReducedMotion) return;
   root.querySelectorAll('.card, .work-tile').forEach(card => {
@@ -190,7 +178,6 @@ async function copyText(text) {
     await navigator.clipboard.writeText(text);
     return true;
   } catch (err) {
-    // Fallback for older/blocked clipboard API
     const ta = document.createElement('textarea');
     ta.value = text;
     ta.style.position = 'fixed';
@@ -218,7 +205,7 @@ function bindCopyButtons(root = document) {
 }
 bindCopyButtons();
 
-// ============ VISUAL MOCK RENDERER (shared by work grid + case study) ============
+// ============ VISUAL MOCK RENDERER (shared by work grid + carousel) ============
 function renderVisualMock(type) {
   switch (type) {
     case 'bars':
@@ -240,56 +227,85 @@ function renderVisualMock(type) {
       return '';
   }
 }
-const visualClassByIndex = ['work-visual--1', 'work-visual--2', 'work-visual--3', 'work-visual--4'];
 function visualClassFor(type) {
   const map = { bars: 'work-visual--1', components: 'work-visual--2', map: 'work-visual--3', flow: 'work-visual--4' };
-  return map[type] || visualClassByIndex[0];
+  return map[type] || 'work-visual--1';
 }
 
-// Minimal hardcoded fallback so the site is never a dead end if case-studies.json
-// can't be fetched (e.g. opened straight from disk via file:// without a local server).
-const FALLBACK_CASE_STUDIES = [
-  { id: 'ai-dashboard', title: 'AI-Driven Analytics Dashboard' },
-  { id: 'design-system', title: 'Enterprise Design System' },
-  { id: 'discrepancy-reporting', title: 'Discrepancy Reporting Suite' },
-  { id: 'metrics-monitor', title: 'Metrics Refresh Monitor' },
+// ============ CASE STUDIES (hardcoded — no JSON file, each has its own static page) ============
+const CASE_STUDIES = [
+  {
+    id: 'customer-care-portal',
+    title: 'Customer Care Portal',
+    tag: 'Enterprise UX · Manufacturing',
+    cardSummary: 'A centralized B2B portal turning email-and-spreadsheet complaint handling into a traceable, role-based 8D resolution workflow.',
+    visual: 'flow',
+    href: 'customer-care-portal.html'
+  },
+  // {
+  //   id: 'design-system',
+  //   title: 'Enterprise Design System',
+  //   tag: 'Design Systems',
+  //   cardSummary: 'Reusable component library and token set that standardised UI across teams and cut handoff time by 30%.',
+  //   visual: 'components',
+  //   href: 'design-system.html'
+  // },
+  // {
+  //   id: 'discrepancy-reporting',
+  //   title: 'Discrepancy Reporting Suite',
+  //   tag: 'Data Visualization',
+  //   cardSummary: 'Treemap and bar-chart views built to surface reporting discrepancies at a glance for operations teams.',
+  //   visual: 'map',
+  //   href: 'discrepancy-reporting.html'
+  // },
+  // {
+  //   id: 'metrics-monitor',
+  //   title: 'Metrics Refresh Monitor',
+  //   tag: 'Dashboard Design',
+  //   cardSummary: 'Status dashboard for pipeline health, designed around a strict information hierarchy for on-call teams.',
+  //   visual: 'flow',
+  //   href: 'metrics-monitor.html'
+  // },
 ];
 
-async function loadCaseStudies() {
-  const res = await fetch('case-studies.json', { cache: 'no-store' });
-  if (!res.ok) throw new Error('Failed to load case-studies.json (' + res.status + ')');
-  return res.json();
-}
-
-// ============ FEATURED WORK GRID (index page, JSON-driven) ============
+// ============ FEATURED WORK GRID WITH PAGINATION (index page) ============
 (function initWorkGrid() {
   const grid = document.getElementById('workGrid');
+  const paginationEl = document.getElementById('workPagination');
   if (!grid) return;
 
-  loadCaseStudies().then(data => {
-    grid.innerHTML = data.caseStudies.map(cs => `
+  const PAGE_SIZE = 4;
+  const totalPages = Math.max(1, Math.ceil(CASE_STUDIES.length / PAGE_SIZE));
+  let page = 1;
+
+  function cardHtml(cs) {
+    return `
       <div class="work-tile tilt" tabindex="0" role="link"
            aria-label="View case study: ${cs.title}"
-           data-href="case-study.html?id=${encodeURIComponent(cs.id)}">
-        <div class="work-visual ${visualClassFor(cs.visuals[0])}">
-          ${renderVisualMock(cs.visuals[0])}
+           data-href="${cs.href}">
+        <div class="work-visual ${visualClassFor(cs.visual)}">
+          ${renderVisualMock(cs.visual)}
         </div>
         <div class="work-info">
           <h3>${cs.title}</h3>
           <p>${cs.cardSummary}</p>
           <span class="work-tag">${cs.tag}</span>
           <div class="work-actions">
-            <a class="work-link magnetic" href="case-study.html?id=${encodeURIComponent(cs.id)}">View case study →</a>
-            <button class="copy-btn" data-path="case-study.html?id=${encodeURIComponent(cs.id)}" title="Copy case study link" aria-label="Copy case study link">
+            <a class="work-link magnetic" href="${cs.href}">View case study →</a>
+            <button class="copy-btn" data-path="${cs.href}" title="Copy case study link" aria-label="Copy case study link">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
               <span class="copy-toast">Link copied</span>
             </button>
           </div>
         </div>
-      </div>
-    `).join('');
+      </div>`;
+  }
 
-    // Whole-card click-to-open, without hijacking clicks on the link/copy button
+  function renderPage() {
+    const start = (page - 1) * PAGE_SIZE;
+    const items = CASE_STUDIES.slice(start, start + PAGE_SIZE);
+    grid.innerHTML = items.map(cardHtml).join('');
+
     grid.querySelectorAll('.work-tile').forEach(tile => {
       tile.addEventListener('click', (e) => {
         if (e.target.closest('.work-actions')) return;
@@ -305,139 +321,201 @@ async function loadCaseStudies() {
     bindTilt(grid);
     if (window.__bindCursorHover) window.__bindCursorHover(grid);
     observeReveals(grid);
-  }).catch(() => {
-    grid.innerHTML = `
-      <div class="cs-state" style="grid-column:1/-1;">
-        <h3>Couldn't load projects from case-studies.json</h3>
-        <p>If you're viewing this straight from a folder on disk, browsers block that fetch for security. Serve the folder with a local server, or upload it to any static host - it'll work immediately.</p>
-        <div class="fallback-links">
-          ${FALLBACK_CASE_STUDIES.map(cs => `<a class="btn btn-outline" href="case-study.html?id=${cs.id}">${cs.title}</a>`).join('')}
-        </div>
-      </div>`;
-  });
-})();
-
-// ============ CASE STUDY TEMPLATE PAGE (case-study.html, JSON-driven) ============
-(function initCaseStudyPage() {
-  const root = document.getElementById('csRoot');
-  if (!root) return;
-
-  const params = new URLSearchParams(window.location.search);
-  const id = params.get('id');
-
-  const stateEl = document.getElementById('csState');
-  const contentEl = document.getElementById('csContent');
-
-  function showState(html) {
-    stateEl.innerHTML = html;
-    stateEl.hidden = false;
-    contentEl.hidden = true;
   }
 
-  if (!id) {
-    showState(`
-      <div class="cs-state">
-        <h3>No project specified</h3>
-        <p>Pick a project from the portfolio to view its case study.</p>
-        <div class="fallback-links"><a class="btn btn-solid" href="index.html#work">Back to portfolio</a></div>
-      </div>`);
+  function renderPagination() {
+    if (!paginationEl) return;
+    if (totalPages <= 1) { paginationEl.innerHTML = ''; return; }
+
+    let html = `<button class="page-btn" data-page="prev" ${page === 1 ? 'disabled' : ''} aria-label="Previous page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>`;
+
+    for (let i = 1; i <= totalPages; i++) {
+      html += `<button class="page-btn ${i === page ? 'active' : ''}" data-page="${i}">${i}</button>`;
+    }
+
+    html += `<button class="page-btn" data-page="next" ${page === totalPages ? 'disabled' : ''} aria-label="Next page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>`;
+
+    paginationEl.innerHTML = html;
+
+    paginationEl.querySelectorAll('.page-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.dataset.page === 'prev') page = Math.max(1, page - 1);
+        else if (btn.dataset.page === 'next') page = Math.min(totalPages, page + 1);
+        else page = parseInt(btn.dataset.page, 10);
+        renderPage();
+        renderPagination();
+        grid.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'nearest' });
+      });
+    });
+  }
+
+  renderPage();
+  renderPagination();
+})();
+
+// ============ MORE CASE STUDIES CAROUSEL (case study detail pages) ============
+(function initMoreCaseStudies() {
+  const section = document.getElementById('moreCaseStudies');
+  if (!section) return;
+
+  // Get current HTML filename
+  const currentPage = window.location.pathname
+    .split('/')
+    .pop()
+    .replace('.html', '');
+
+  // Find current case study
+  const currentId = currentPage;
+
+  // Remove current case study from carousel
+  const others = CASE_STUDIES.filter(cs => cs.id !== currentId);
+
+  if (!others.length) {
+    section.hidden = true;
     return;
   }
 
-  loadCaseStudies().then(data => {
-    const cs = data.caseStudies.find(c => c.id === id);
-    if (!cs) {
-      showState(`
-        <div class="cs-state">
-          <h3>Project not found</h3>
-          <p>"${id}" doesn't match any case study. It may have moved.</p>
-          <div class="fallback-links">
-            ${FALLBACK_CASE_STUDIES.map(f => `<a class="btn btn-outline" href="case-study.html?id=${f.id}">${f.title}</a>`).join('')}
-          </div>
-        </div>`);
-      return;
+  const track = section.querySelector('.more-cs-track');
+  const prevBtn = section.querySelector('[data-more-cs="prev"]');
+  const nextBtn = section.querySelector('[data-more-cs="next"]');
+
+  if (!track) return;
+
+  track.innerHTML = others.map(cs => `
+    <a
+      class="work-tile more-cs-card tilt"
+      href="${cs.href}"
+      aria-label="View case study: ${cs.title}"
+    >
+      <div class="work-visual ${visualClassFor(cs.visual)}">
+        ${renderVisualMock(cs.visual)}
+      </div>
+
+      <div class="work-info">
+        <h3>${cs.title}</h3>
+        <p>${cs.cardSummary}</p>
+        <span class="work-tag">${cs.tag}</span>
+      </div>
+    </a>
+  `).join('');
+
+  bindTilt(track);
+
+  if (window.__bindCursorHover) {
+    window.__bindCursorHover(track);
+  }
+
+  function updateArrows() {
+    if (!prevBtn || !nextBtn) return;
+
+    prevBtn.disabled = track.scrollLeft <= 4;
+
+    nextBtn.disabled =
+      track.scrollLeft >=
+      track.scrollWidth - track.clientWidth - 4;
+  }
+
+  function scrollByCard(dir) {
+    const card = track.querySelector('.more-cs-card');
+
+    const amount = card
+      ? card.getBoundingClientRect().width + 16
+      : 240;
+
+    track.scrollBy({
+      left: dir * amount,
+      behavior: prefersReducedMotion ? 'auto' : 'smooth'
+    });
+  }
+
+  prevBtn?.addEventListener('click', () => {
+    scrollByCard(-1);
+  });
+
+  nextBtn?.addEventListener('click', () => {
+    scrollByCard(1);
+  });
+
+  track.addEventListener('scroll', updateArrows, {
+    passive: true
+  });
+
+  window.addEventListener('resize', updateArrows);
+
+  requestAnimationFrame(() => {
+    const nav = section.querySelector('.more-cs-nav');
+
+    if (
+      nav &&
+      track.scrollWidth <= track.clientWidth + 4
+    ) {
+      nav.hidden = true;
     }
 
-    const site = data.site;
-    const permalink = absoluteUrl(`case-study.html?id=${encodeURIComponent(cs.id)}`);
-
-    document.title = `${cs.title} - Case Study by ${site.name}`;
-    const descMeta = document.querySelector('meta[name="description"]');
-    if (descMeta) descMeta.setAttribute('content', cs.description);
-
-    document.getElementById('csEyebrow').textContent = cs.eyebrow;
-    document.getElementById('csTitle').textContent = cs.title;
-    document.getElementById('csSummary').textContent = cs.summary;
-
-    document.getElementById('csMetaGrid').innerHTML = `
-      <div class="cs-meta-item"><h4>Role</h4><p>${cs.role}</p></div>
-      <div class="cs-meta-item"><h4>Client / Team</h4><p>${cs.client}</p></div>
-      <div class="cs-meta-item"><h4>Timeline</h4><p>${cs.timeline}</p></div>
-      <div class="cs-meta-item"><h4>Tools</h4><p>${cs.tools}</p></div>
-    `;
-
-    document.getElementById('csChallenge').innerHTML = cs.challenge.map(p => `<p class="about-text">${p}</p>`).join('');
-    document.getElementById('csProcess').innerHTML = cs.process.map(li => `<li>${li}</li>`).join('');
-    document.getElementById('csSolution').innerHTML = cs.solution.map(p => `<p class="about-text">${p}</p>`).join('');
-    document.getElementById('csResults').innerHTML = cs.results.map(p => `<p class="about-text">${p}</p>`).join('');
-
-    document.getElementById('csVisualStrip').innerHTML = cs.visuals.map(v => `
-      <div class="work-visual ${visualClassFor(v)}">${renderVisualMock(v)}</div>
-    `).join('');
-
-    // Share row: copy link + LinkedIn + X + Email
-    const shareCopyBtn = document.getElementById('shareCopyBtn');
-    shareCopyBtn.dataset.path = `case-study.html?id=${encodeURIComponent(cs.id)}`;
-    bindCopyButtons(document);
-
-    const shareText = `${cs.title} - a case study by ${site.name}`;
-    document.getElementById('shareLinkedIn').href =
-      `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(permalink)}`;
-    document.getElementById('shareTwitter').href =
-      `https://twitter.com/intent/tweet?url=${encodeURIComponent(permalink)}&text=${encodeURIComponent(shareText)}`;
-    document.getElementById('shareEmail').href =
-      `mailto:?subject=${encodeURIComponent(cs.title + ' - Case Study')}&body=${encodeURIComponent(shareText + '\n\n' + permalink)}`;
-
-    stateEl.hidden = true;
-    contentEl.hidden = false;
-    contentEl.querySelectorAll('.reveal').forEach(el => requestAnimationFrame(() => el.classList.add('in')));
-
-    bindMagnetic(contentEl);
-    bindTilt(contentEl);
-    if (window.__bindCursorHover) window.__bindCursorHover(contentEl);
-  }).catch(() => {
-    showState(`
-      <div class="cs-state">
-        <h3>Couldn't load this case study</h3>
-        <p>If you're viewing this straight from a folder on disk, browsers block loading case-studies.json for security. Serve the folder with a local server (e.g. <code>npx serve</code>), or upload it to any static host - it'll work immediately.</p>
-        <div class="fallback-links"><a class="btn btn-solid" href="index.html#work">Back to portfolio</a></div>
-      </div>`);
+    updateArrows();
   });
 })();
 
+// ============ GALLERY LIGHTBOX (view-only screens, no upload) ============
+(function initGalleryLightbox() {
+  const lightbox = document.getElementById('lightbox');
+  if (!lightbox) return;
+
+  const visualEl = lightbox.querySelector('.lightbox-visual');
+  const titleEl = lightbox.querySelector('.lightbox-body h4');
+  const descEl = lightbox.querySelector('.lightbox-body p');
+  const closeBtn = lightbox.querySelector('.lightbox-close');
+
+  function open(tile) {
+    const label = tile.dataset.label || 'Screen';
+    const desc = tile.dataset.desc || '';
+    const img = tile.dataset.img;
+
+    titleEl.textContent = label;
+    descEl.textContent = desc;
+
+    if (img) {
+      visualEl.innerHTML = `<img src="${img}" alt="${label}">`;
+    } else {
+      visualEl.innerHTML = `<div class="placeholder-label">${label} — screen preview coming soon</div>`;
+    }
+
+    lightbox.hidden = false;
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+
+  function close() {
+    lightbox.hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.gallery-tile').forEach(tile => {
+    tile.addEventListener('click', () => open(tile));
+  });
+
+  closeBtn?.addEventListener('click', close);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lightbox.hidden) close(); });
+})();
+
+// ============ SMOOTH SCROLL WITH OFFSET ============
 const OFFSET = 80;
 
 function smoothScrollWithOffset(e) {
   const href = this.getAttribute("href");
-
-  // Ignore links to other pages
   if (!href.startsWith("#")) return;
 
   e.preventDefault();
-
   const target = document.querySelector(href);
-
   if (!target) return;
 
-  const top =
-    target.getBoundingClientRect().top +
-    window.pageYOffset -
-    OFFSET;
-
-  window.scrollTo({
-    top,
-    behavior: "smooth",
-  });
+  const top = target.getBoundingClientRect().top + window.pageYOffset - OFFSET;
+  window.scrollTo({ top, behavior: "smooth" });
 }
 
 document.querySelectorAll('a[href^="#"]').forEach(link => {
@@ -447,7 +525,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 // ── Disable right-click context menu ──
 document.addEventListener('contextmenu', e => e.preventDefault());
 
-// ============ DINO GAME — Complete Rewrite ============
+// ============ DINO GAME ============
 (function initDinoGame() {
   const canvas  = document.getElementById('dinoCanvas');
   const scoreEl = document.getElementById('dinoScore');
@@ -456,12 +534,10 @@ document.addEventListener('contextmenu', e => e.preventDefault());
 
   const ctx = canvas.getContext('2d');
 
-  // ── CSS variable reader ──
   function cssVar(name) {
     return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || '#fff';
   }
 
-  // ── Constants ──
   const DINO_W      = 22;
   const DINO_H      = 30;
   const JUMP_V      = -12.5;
@@ -469,18 +545,16 @@ document.addEventListener('contextmenu', e => e.preventDefault());
   const BASE_SPEED  = 4.5;
   const MAX_SPEED   = 14;
 
-  // ── State ──
   let W, H, groundY;
   let dino, obstacles, particles;
   let score, hiScore, speed, frame;
-  let phase; // 'start' | 'running' | 'dead' | 'restart'
+  let phase;
   let animId;
   let startPulse = 0;
   let deathFrame = 0;
 
   hiScore = 0;
 
-  // ── Resize ──
   function resize() {
     W = canvas.offsetWidth;
     H = canvas.offsetHeight;
@@ -490,7 +564,6 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     groundY = H - 14;
   }
 
-  // ── Init / Reset ──
   function initDino() {
     dino = {
       x: W * 0.10,
@@ -512,7 +585,6 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     phase = 'running';
   }
 
-  // ── Jump ──
   function tryJump() {
     if (phase === 'start') {
       resetGame();
@@ -525,12 +597,10 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     }
     if (phase === 'dead' && deathFrame > 40) {
       phase = 'restart';
-      // Brief pause then restart
       setTimeout(() => resetGame(), 180);
     }
   }
 
-  // ── Input bindings ──
   document.addEventListener('keydown', (e) => {
     if (e.code === 'Space' || e.code === 'ArrowUp') {
       if (canvas.closest('.profile-card')) {
@@ -544,7 +614,6 @@ document.addEventListener('contextmenu', e => e.preventDefault());
   jumpBtn?.addEventListener('click',     tryJump);
   jumpBtn?.addEventListener('touchstart',(e) => { e.preventDefault(); tryJump(); }, { passive: false });
 
-  // ── Particles ──
   function spawnDustParticles(x, y) {
     for (let i = 0; i < 6; i++) {
       particles.push({
@@ -572,23 +641,20 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     }
   }
 
-  // ── Obstacle spawner ──
   function spawnObstacle() {
     const h = 18 + Math.random() * 24;
     const w = 10 + Math.random() * 8;
-    // Occasionally spawn double cactus
     const count = score > 300 && Math.random() < 0.35 ? 2 : 1;
     for (let i = 0; i < count; i++) {
       obstacles.push({
         x: W + i * (w + 8),
         y: groundY - h,
         w, h,
-        hue: Math.random() < 0.5 ? 0 : 1, // variety
+        hue: Math.random() < 0.5 ? 0 : 1,
       });
     }
   }
 
-  // ── Collision ──
   function hits(ob) {
     const pad = 5;
     return !(
@@ -599,10 +665,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     );
   }
 
-  // ── Drawing helpers ──
-
   function drawGround() {
-    // Solid ground line
     ctx.strokeStyle = cssVar('--border-strong');
     ctx.lineWidth   = 1.5;
     ctx.setLineDash([]);
@@ -611,7 +674,6 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     ctx.lineTo(W, groundY + DINO_H + 2);
     ctx.stroke();
 
-    // Moving dots on ground
     ctx.fillStyle = cssVar('--border');
     const dotSpacing = 40;
     const offset = (frame * speed * 0.5) % dotSpacing;
@@ -628,7 +690,6 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     const x    = dino.x;
     const y    = dino.y;
 
-    // Shadow
     const shadowAlpha = dino.onGround ? 0.18 : Math.max(0, 0.18 - (groundY - DINO_H - dino.y) / (groundY * 2));
     ctx.fillStyle = `rgba(0,0,0,${shadowAlpha})`;
     ctx.beginPath();
@@ -638,29 +699,24 @@ document.addEventListener('contextmenu', e => e.preventDefault());
 
     ctx.fillStyle = ink;
 
-    // Body
     ctx.beginPath();
     ctx.roundRect(x, y + 8, DINO_W, DINO_H - 8, 4);
     ctx.fill();
 
-    // Head
     ctx.beginPath();
     ctx.roundRect(x + 7, y, 15, 14, 3);
     ctx.fill();
 
-    // Mouth / beak
     ctx.fillStyle = dead ? cssVar('--void') : cssVar('--surface');
     ctx.beginPath();
     ctx.roundRect(x + 18, y + 7, 6, 3, 1);
     ctx.fill();
 
-    // Eye
     ctx.fillStyle = eye;
     ctx.beginPath();
     ctx.arc(x + 18, y + 4, dead ? 3 : 2.5, 0, Math.PI * 2);
     ctx.fill();
     if (dead) {
-      // X eyes
       ctx.strokeStyle = ink;
       ctx.lineWidth   = 1.5;
       ctx.beginPath();
@@ -669,7 +725,6 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       ctx.stroke();
     }
 
-    // Tail
     ctx.fillStyle = ink;
     ctx.beginPath();
     ctx.moveTo(x, y + 14);
@@ -678,7 +733,6 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     ctx.closePath();
     ctx.fill();
 
-    // Legs — animated when running
     if (!dead) {
       const leg = dino.onGround ? Math.sin(dino.legPhase) : 0;
       ctx.fillRect(x + 4,  y + DINO_H, 5, 6 + leg * 3);
@@ -693,25 +747,20 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     const col = ob.hue === 0 ? cssVar('--cyan') : cssVar('--violet');
 
     ctx.fillStyle = col;
-    // Main trunk
     ctx.beginPath();
     ctx.roundRect(ob.x + ob.w * 0.3, ob.y, ob.w * 0.42, ob.h, 3);
     ctx.fill();
 
-    // Left arm
     ctx.beginPath();
     ctx.roundRect(ob.x, ob.y + ob.h * 0.28, ob.w * 0.36, ob.h * 0.32, 2);
     ctx.fill();
-    // Left arm top
     ctx.beginPath();
     ctx.roundRect(ob.x, ob.y + ob.h * 0.12, ob.w * 0.14, ob.h * 0.2, 2);
     ctx.fill();
 
-    // Right arm
     ctx.beginPath();
     ctx.roundRect(ob.x + ob.w * 0.64, ob.y + ob.h * 0.38, ob.w * 0.36, ob.h * 0.28, 2);
     ctx.fill();
-    // Right arm top
     ctx.beginPath();
     ctx.roundRect(ob.x + ob.w * 0.86, ob.y + ob.h * 0.2, ob.w * 0.14, ob.h * 0.22, 2);
     ctx.fill();
@@ -735,11 +784,9 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     ctx.fillText(Math.floor(score).toString().padStart(5, '0'), 10, 16);
   }
 
-  // ── START SCREEN ──
   function drawStartScreen() {
     startPulse += 0.04;
 
-    // Animated grid lines
     ctx.strokeStyle = cssVar('--border');
     ctx.lineWidth   = 0.5;
     ctx.setLineDash([3, 6]);
@@ -754,7 +801,6 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     ctx.globalAlpha = 1;
     ctx.setLineDash([]);
 
-    // Floating score hint
     const hint = ['0', '1', '0', '0'].map((n, i) => {
       const t = startPulse + i * 0.5;
       return { n, y: H * 0.35 + Math.sin(t) * 4, x: W * 0.5 + (i - 1.5) * 16 };
@@ -768,18 +814,15 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     });
     ctx.globalAlpha = 1;
 
-    // Dino with bobbing motion
     dino.y = groundY - DINO_H + Math.sin(startPulse * 1.5) * 3;
     drawDino(false);
     drawGround();
 
-    // Title
     ctx.font      = `700 13px ${cssVar('--font-display') || 'sans-serif'}`;
     ctx.fillStyle = cssVar('--text');
     ctx.textAlign = 'center';
     ctx.fillText('DINO RUN', W / 2, groundY - 24);
 
-    // Pulsing prompt
     const alpha = 0.5 + Math.sin(startPulse * 3) * 0.5;
     ctx.font      = `500 10px ${cssVar('--font-mono') || 'monospace'}`;
     ctx.fillStyle = cssVar('--cyan');
@@ -790,12 +833,10 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     );
     ctx.globalAlpha = 1;
 
-    // Animated cactus preview on right
     const previewX = W * 0.82 + Math.sin(startPulse * 0.8) * 4;
     drawCactus({ x: previewX, y: groundY - 28, w: 14, h: 28, hue: 0 });
   }
 
-  // ── GAME OVER SCREEN ──
   function drawDeadScreen() {
     deathFrame++;
     const reveal = Math.min(deathFrame / 25, 1);
@@ -804,7 +845,6 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     drawParticles();
     drawDino(true);
 
-    // Slide-in overlay
     ctx.globalAlpha = reveal * 0.65;
     ctx.fillStyle   = cssVar('--void');
     ctx.fillRect(0, 0, W, H);
@@ -812,9 +852,6 @@ document.addEventListener('contextmenu', e => e.preventDefault());
 
     if (reveal > 0.6) {
       const a = (reveal - 0.6) / 0.4;
-
-      // GAME OVER text
-      // Centre everything around the middle of the canvas
       const midY = H / 2;
 
       ctx.font      = `800 13px ${cssVar('--font-display') || 'sans-serif'}`;
@@ -822,15 +859,12 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       ctx.textAlign = 'center';
       ctx.fillText('GAME OVER', W / 2, midY - 26);
 
-      // HI score (left) + SCORE (right) on same line
       ctx.font = `500 10px ${cssVar('--font-mono') || 'monospace'}`;
 
-      // Left — HI score
       ctx.fillStyle = cssVar('--cyan');
       ctx.textAlign = 'left';
       ctx.fillText(`HI  ${Math.floor(hiScore).toString().padStart(5, '0')}`, W / 2 - 65, midY - 4);
 
-      // Vertical divider
       ctx.strokeStyle = cssVar('--border-strong');
       ctx.lineWidth   = 0.8;
       ctx.setLineDash([]);
@@ -839,15 +873,12 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       ctx.lineTo(W / 2, midY + 4);
       ctx.stroke();
 
-      // Right — current SCORE
       ctx.fillStyle = cssVar('--text-muted');
       ctx.textAlign = 'right';
       ctx.fillText(`SCORE  ${Math.floor(score).toString().padStart(5, '0')}`, W / 2 + 80, midY - 4);
 
-      // Reset align
       ctx.textAlign = 'center';
 
-      // Restart hint (pulsing after pause)
       if (deathFrame > 40) {
         const pulse = 0.5 + Math.sin((deathFrame - 40) * 0.15) * 0.5;
         ctx.globalAlpha = a * pulse;
@@ -864,9 +895,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     drawScore();
   }
 
-  // ── MAIN LOOP ──
   function loop() {
-    // Clear at logical resolution
     ctx.clearRect(0, 0, W, H);
 
     if (phase === 'start') {
@@ -877,7 +906,6 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     }
 
     if (phase === 'dead' || phase === 'restart') {
-      // Update particles even in dead state
       particles.forEach(p => {
         p.x += p.vx;
         p.y += p.vy;
@@ -890,14 +918,10 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       return;
     }
 
-    // ── RUNNING ──
     frame++;
 
-    // Progressive difficulty
-    // Speed ramps up quickly at first then plateaus gracefully
     speed = Math.min(MAX_SPEED, BASE_SPEED + Math.pow(score, 0.55) * 0.18);
 
-    // Physics
     dino.vy        += GRAVITY;
     dino.y         += dino.vy;
     dino.legPhase  += 0.28 * (speed / BASE_SPEED);
@@ -910,17 +934,14 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       dino.onGround  = false;
     }
 
-    // Spawn obstacles — gap shrinks as speed grows
     const baseFreq = 90;
     const minFreq  = 32;
     const freq     = Math.max(minFreq, Math.floor(baseFreq - score * 0.06));
     if (frame % freq === 0) spawnObstacle();
 
-    // Move obstacles
     obstacles.forEach(ob => { ob.x -= speed; });
     obstacles = obstacles.filter(ob => ob.x + ob.w + 4 > 0);
 
-    // Update particles
     particles.forEach(p => {
       p.x   += p.vx;
       p.y   += p.vy;
@@ -929,7 +950,6 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     });
     particles = particles.filter(p => p.life > 0);
 
-    // Collision check
     if (obstacles.some(ob => hits(ob))) {
       if (score > hiScore) hiScore = score;
       scoreEl.textContent = `HI ${Math.floor(hiScore).toString().padStart(5, '0')}`;
@@ -939,17 +959,14 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       return;
     }
 
-    // Score
     score += 0.12 * (speed / BASE_SPEED);
 
-    // ── Draw ──
     drawGround();
     drawParticles();
     obstacles.forEach(drawCactus);
     drawDino(false);
     drawScore();
 
-    // Speed indicator (subtle)
     const speedPct = (speed - BASE_SPEED) / (MAX_SPEED - BASE_SPEED);
     ctx.fillStyle   = cssVar('--cyan');
     ctx.globalAlpha = 0.22;
@@ -959,7 +976,6 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     animId = requestAnimationFrame(loop);
   }
 
-  // ── Boot ──
   resize();
   initDino();
   obstacles  = [];
