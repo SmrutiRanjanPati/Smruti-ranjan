@@ -1,3 +1,6 @@
+// ── Disable right-click context menu ──
+document.addEventListener('contextmenu', e => e.preventDefault());
+
 // ============ FOOTER YEAR ============
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -584,9 +587,6 @@ function smoothScrollWithOffset(e) {
 document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener("click", smoothScrollWithOffset);
 });
-
-// ── Disable right-click context menu ──
-document.addEventListener('contextmenu', e => e.preventDefault());
 
 // ============ DINO GAME ============
 (function initDinoGame() {
