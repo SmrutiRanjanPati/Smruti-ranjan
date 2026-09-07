@@ -1,5 +1,5 @@
 // ── Disable right-click context menu ──
-document.addEventListener('contextmenu', e => e.preventDefault());
+// document.addEventListener('contextmenu', e => e.preventDefault());
 
 // ============ FOOTER YEAR ============
 const yearEl = document.getElementById('year');
@@ -421,6 +421,48 @@ const CASE_STUDIES = [
 
   renderPage();
   renderPagination();
+})();
+
+// ============ NATIVE SHARE (opens the OS share sheet on mobile, so LinkedIn/X/etc ==========
+// open the real app instead of just a browser tab - web-intent links can't force that
+// themselves since the OS controls app hand-off, not the page).
+(function initNativeShare() {
+  document.querySelectorAll('.cs-share-row').forEach(row => {
+    if (!navigator.share) return; // no Web Share API - keep the existing per-app links as-is
+
+    const url = row.dataset.shareUrl || window.location.href;
+    const title = row.dataset.shareTitle || document.title;
+
+    const shareBtn = document.createElement('button');
+    shareBtn.type = 'button';
+    shareBtn.className = 'share-btn';
+    shareBtn.innerHTML = `<i class="fa-solid fa-share-nodes" aria-hidden="true"></i><span class="share-btn-label">Share</span>`;
+
+    shareBtn.addEventListener('click', async () => {
+      try {
+        await navigator.share({ title, text: title, url });
+      } catch (err) {
+        // user cancelled the share sheet - nothing to do
+      }
+    });
+
+    // Replace the app-specific links (LinkedIn / X / Email) with the one native share
+    // button - the OS sheet already lists every installed app that can handle a share,
+    // so the separate icons would just be duplicates. Copy link stays, it's still handy.
+    row.querySelectorAll('.share-btn:not(.copy-btn)').forEach(el => el.remove());
+    const copyBtn = row.querySelector('.copy-btn');
+    row.insertBefore(shareBtn, copyBtn);
+  });
+})();
+
+// ============ ACCORDIONS (replaces plain tables on case study pages) ============
+(function initAccordions() {
+  document.querySelectorAll('.accordion-header').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+    });
+  });
 })();
 
 // ============ CASE STUDY TABS (tabbed case-study detail pages) ============

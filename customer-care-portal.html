@@ -1,37 +1,58 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico" />
+    <link rel="apple-touch-icon" href="./assets/favicon.ico" />
+    <title>Customer Care Portal - Case Study - Smruti Ranjan Pati</title>
+    <meta
+      name="description"
+      content="A concept case study for a B2B complaint-management portal that replaces email-based coordination with a role-based dashboard, structured 8D investigation workflow and dedicated action tracking."
+    />
+    <meta name="author" content="Smruti Ranjan Pati" />
+    <meta name="theme-color" content="#0A0B0F" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <link rel="icon" type="image/x-icon" href="./assets/favicon.ico" />
-  <link rel="apple-touch-icon" href="./assets/favicon.ico" />
-  <title>Customer Care Portal - Case Study - Smruti Ranjan Pati</title>
-  <meta name="description" content="A concept case study for a B2B complaint-management portal that replaces email-based coordination with a role-based dashboard, structured 8D investigation workflow and dedicated action tracking." />
-  <meta name="author" content="Smruti Ranjan Pati" />
-  <meta name="theme-color" content="#0A0B0F" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="preload"
+      as="style"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      onload="
+        this.onload = null;
+        this.rel = 'stylesheet';
+      "
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      />
+    </noscript>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
-    rel="stylesheet" />
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    onload="this.onload = null; this.rel = 'stylesheet';" />
-  <noscript>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
-  </noscript>
-
-  <link rel="stylesheet" href="style.css" />
-  <script>
-    (function () {
-      var saved = localStorage.getItem("sr-theme");
-      var theme = saved || (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
-      if (theme === "light") document.documentElement.setAttribute("data-theme", "light");
-    })();
-  </script>
-   <!-- Google tag (gtag.js) -->
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      (function () {
+        var saved = localStorage.getItem("sr-theme");
+        var theme =
+          saved ||
+          (window.matchMedia("(prefers-color-scheme: light)").matches
+            ? "light"
+            : "dark");
+        if (theme === "light")
+          document.documentElement.setAttribute("data-theme", "light");
+      })();
+    </script>
+    <!-- Google tag (gtag.js) -->
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-1DMZH038V6"
@@ -45,154 +66,569 @@
 
       gtag("config", "G-1DMZH038V6");
     </script>
-</head>
+  </head>
 
-<body>
-  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
-  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+  <body>
+    <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+    <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
 
-  <header class="topnav" id="topnav">
-    <div class="topnav-inner">
-      <a href="index.html" class="brand">
-        <span class="brand-mark">SR</span>
-        <span class="brand-name">Smruti Ranjan</span>
+    <header class="topnav" id="topnav">
+      <div class="topnav-inner">
+        <a href="index.html" class="brand">
+          <span class="brand-mark">SR</span>
+          <span class="brand-name">Smruti Ranjan</span>
+        </a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="index.html#work">All case studies</a>
+        </nav>
+        <div class="nav-cta">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            type="button"
+            aria-label="Toggle dark / light mode"
+          >
+            <svg
+              class="icon-sun"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="4.5" />
+              <path
+                d="M12 2.5v2.5M12 19v2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M2.5 12H5M19 12h2.5M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"
+              />
+            </svg>
+            <svg
+              class="icon-moon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z" />
+            </svg>
+          </button>
+          <a
+            class="btn btn-solid magnetic"
+            href="Smruti_Ranjan_Pati_Resume.pdf"
+            target="_blank"
+            rel="noopener"
+            >Resume</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <a class="cs-back" href="index.html#work">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-arrow-left"
+        >
+          <path d="m12 19-7-7 7-7" />
+          <path d="M19 12H5" />
+        </svg>
+        Back to portfolio
       </a>
-      <nav class="nav-links" aria-label="Primary">
-        <a href="index.html#work">All case studies</a>
+
+      <section class="card cs-hero reveal">
+        <span class="cs-eyebrow">Enterprise UX · Complaint Management</span>
+        <h1>Customer Care Portal (CCP)</h1>
+        <p class="about-text">
+          Manufacturing customers expect timely responses and documented proof
+          that quality issues have been resolved, but the existing process ran
+          on email, spreadsheets and manual follow-ups. This case study covers
+          how five different roles were given one shared, structured complaint
+          record instead.
+        </p>
+
+        <div class="cs-meta-grid">
+          <div class="cs-meta-item">
+            <h4>Role</h4>
+            <p>UX/UI Designer</p>
+          </div>
+          <div class="cs-meta-item">
+            <h4>Client / Team</h4>
+            <p>Concept project · B2B manufacturing</p>
+          </div>
+          <div class="cs-meta-item">
+            <h4>Timeline</h4>
+            <p>Concept / proposed product</p>
+          </div>
+          <div class="cs-meta-item">
+            <h4>Tools</h4>
+            <p>Figma</p>
+          </div>
+        </div>
+
+        <div
+          class="cs-share-row"
+          data-share-url="https://smrutiranjanpati.github.io/Smruti-ranjan/customer-care-portal.html"
+          data-share-title="Customer Care Portal"
+        >
+          <span class="cs-share-label">Share:</span>
+          <button
+            class="share-btn copy-btn"
+            data-path="customer-care-portal.html"
+            title="Copy case study link"
+            aria-label="Copy case study link"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="9" y="9" width="12" height="12" rx="2" />
+              <path d="M5 15V5a2 2 0 0 1 2-2h10" />
+            </svg>
+            <span class="share-btn-label">Copy link</span>
+            <span class="copy-toast">Link copied</span>
+          </button>
+          <a
+            class="share-btn"
+            href="https://www.linkedin.com/sharing/share-offsite/?url=https://smrutiranjanpati.github.io/Smruti-ranjan/customer-care-portal.html"
+            target="_blank"
+            rel="noopener"
+          >
+            <i class="fab fa-linkedin-in" aria-hidden="true"></i
+            ><span class="share-btn-label">LinkedIn</span>
+          </a>
+          <a
+            class="share-btn"
+            href="https://twitter.com/intent/tweet?url=https://smrutiranjanpati.github.io/Smruti-ranjan/customer-care-portal.html&amp;text=Customer%20Care%20Portal%20-%20a%20case%20study%20by%20Smruti%20Ranjan%20Pati"
+            target="_blank"
+            rel="noopener"
+          >
+            <i class="fa-brands fa-twitter" aria-hidden="true"></i
+            ><span class="share-btn-label">X</span>
+          </a>
+          <a
+            class="share-btn"
+            href="mailto:?subject=Customer%20Care%20Portal%20-%20Case%20Study&amp;body=Customer%20Care%20Portal%20-%20a%20case%20study%20by%20Smruti%20Ranjan%20Pati%0A%0Ahttps://smrutiranjanpati.github.io/Smruti-ranjan/customer-care-portal.html"
+          >
+            <i class="fas fa-envelope" aria-hidden="true"></i
+            ><span class="share-btn-label">Email</span>
+          </a>
+        </div>
+      </section>
+
+      <nav class="cs-tabs" id="csTabs">
+        <button type="button" class="cs-tab active" data-tab="panel-overview">
+          Overview
+        </button>
+        <button type="button" class="cs-tab" data-tab="panel-problem">
+          The Problem
+        </button>
+        <button type="button" class="cs-tab" data-tab="panel-users">
+          Users &amp; Workflow
+        </button>
+        <button type="button" class="cs-tab" data-tab="panel-dashboard">
+          Dashboard &amp; 8D
+        </button>
+        <button type="button" class="cs-tab" data-tab="panel-actions">
+          Actions &amp; QC
+        </button>
+        <button type="button" class="cs-tab" data-tab="panel-impact">
+          Decisions &amp; Impact
+        </button>
       </nav>
-      <div class="nav-cta">
-        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark / light mode">
-          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5" /><path d="M12 2.5v2.5M12 19v2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M2.5 12H5M19 12h2.5M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8" /></svg>
-          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z" /></svg>
-        </button>
-        <a class="btn btn-solid magnetic" href="Smruti_Ranjan_Pati_Resume.pdf" target="_blank" rel="noopener">Resume</a>
-      </div>
-    </div>
-  </header>
 
-  <main>
-    <a class="cs-back" href="index.html#work">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
-      Back to portfolio
-    </a>
-
-    <section class="card cs-hero reveal">
-      <span class="cs-eyebrow">Enterprise UX · Complaint Management</span>
-      <h1>Customer Care Portal (CCP)</h1>
-      <p class="about-text">Manufacturing customers expect timely responses and documented proof that quality issues have been resolved, but the existing process ran on email, spreadsheets and manual follow-ups. This case study covers how five different roles were given one shared, structured complaint record instead.</p>
-
-      <div class="cs-meta-grid">
-        <div class="cs-meta-item"><h4>Role</h4><p>UX/UI Designer</p></div>
-        <div class="cs-meta-item"><h4>Client / Team</h4><p>Concept project · B2B manufacturing</p></div>
-        <div class="cs-meta-item"><h4>Timeline</h4><p>Concept / proposed product</p></div>
-        <div class="cs-meta-item"><h4>Tools</h4><p>Figma</p></div>
-      </div>
-
-      <div class="cs-share-row">
-        <span class="cs-share-label">Share:</span>
-        <button class="share-btn copy-btn" data-path="customer-care-portal.html" title="Copy case study link" aria-label="Copy case study link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
-          <span class="share-btn-label">Copy link</span>
-          <span class="copy-toast">Link copied</span>
-        </button>
-        <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https://smrutiranjanpati.github.io/Smruti-ranjan/customer-care-portal.html" target="_blank" rel="noopener">
-          <i class="fab fa-linkedin-in" aria-hidden="true"></i><span class="share-btn-label">LinkedIn</span>
-        </a>
-        <a class="share-btn" href="https://twitter.com/intent/tweet?url=https://smrutiranjanpati.github.io/Smruti-ranjan/customer-care-portal.html&amp;text=Customer%20Care%20Portal%20-%20a%20case%20study%20by%20Smruti%20Ranjan%20Pati" target="_blank" rel="noopener">
-          <i class="fa-brands fa-twitter" aria-hidden="true"></i><span class="share-btn-label">X</span>
-        </a>
-        <a class="share-btn" href="mailto:?subject=Customer%20Care%20Portal%20-%20Case%20Study&amp;body=Customer%20Care%20Portal%20-%20a%20case%20study%20by%20Smruti%20Ranjan%20Pati%0A%0Ahttps://smrutiranjanpati.github.io/Smruti-ranjan/customer-care-portal.html">
-          <i class="fas fa-envelope" aria-hidden="true"></i><span class="share-btn-label">Email</span>
-        </a>
-      </div>
-    </section>
-
-    <nav class="cs-tabs" id="csTabs">
-      <button type="button" class="cs-tab active" data-tab="panel-overview">Overview</button>
-      <button type="button" class="cs-tab" data-tab="panel-problem">The Problem</button>
-      <button type="button" class="cs-tab" data-tab="panel-users">Users &amp; Workflow</button>
-      <button type="button" class="cs-tab" data-tab="panel-dashboard">Dashboard &amp; 8D</button>
-      <button type="button" class="cs-tab" data-tab="panel-actions">Actions &amp; QC</button>
-      <button type="button" class="cs-tab" data-tab="panel-impact">Decisions &amp; Impact</button>
-    </nav>
-
-    <section class="card cs-panel-wrap reveal">
-      <div class="cs-panel active" id="panel-overview">
-        <h2 class="panel-title">Overview</h2>
-        <p class="body-text">Manufacturing customers expect timely responses, transparent communication, and documented proof that quality issues have been resolved. The existing complaint process relied heavily on emails, spreadsheets, and manual follow-ups. This made it difficult to understand complaint status, assign ownership, monitor corrective actions, and verify effectiveness.</p><p class="body-text">The Customer Care Portal was proposed as a centralized B2B platform that connects customers, complaint teams, investigation owners, and action owners through one structured workflow.</p><div class="callout">The product vision was to transform complaint management from a fragmented communication process into a transparent, accountable, and traceable resolution journey.</div><h3 class="block-title">Project goals</h3><ul class="plain-list two-col">
+      <section class="card cs-panel-wrap reveal">
+        <div class="cs-panel active" id="panel-overview">
+          <h2 class="panel-title">Overview</h2>
+          <p class="body-text">
+            Manufacturing customers expect timely responses, transparent
+            communication, and documented proof that quality issues have been
+            resolved. The existing complaint process relied heavily on emails,
+            spreadsheets, and manual follow-ups. This made it difficult to
+            understand complaint status, assign ownership, monitor corrective
+            actions, and verify effectiveness.
+          </p>
+          <p class="body-text">
+            The Customer Care Portal was proposed as a centralized B2B platform
+            that connects customers, complaint teams, investigation owners, and
+            action owners through one structured workflow.
+          </p>
+          <div class="callout">
+            The product vision was to transform complaint management from a
+            fragmented communication process into a transparent, accountable,
+            and traceable resolution journey.
+          </div>
+          <h3 class="block-title">Project goals</h3>
+          <ul class="plain-list two-col">
             <li>Centralize all customer complaints and supporting evidence.</li>
-            <li>Provide real-time visibility into complaint status and ownership.</li>
-            <li>Standardize the 8D investigation and root-cause analysis process.</li>
+            <li>
+              Provide real-time visibility into complaint status and ownership.
+            </li>
+            <li>
+              Standardize the 8D investigation and root-cause analysis process.
+            </li>
             <li>Track corrective, preventive, and containment actions.</li>
             <li>Reduce manual coordination and email dependency.</li>
-            <li>Improve customer confidence through timely updates and final reports.</li>
-          </ul><h3 class="block-title">My contribution</h3><ul class="plain-list two-col">
-            <li>Mapped the end-to-end complaint-resolution workflow.</li>
-            <li>Defined role-based experiences and information architecture.</li>
-            <li>Designed dashboard, complaint list, complaint detail, 8D, action, and QC review experiences.</li>
-            <li>Created interaction patterns for evidence upload, status tracking, assignment, and approvals.</li>
-            <li>Translated complex quality-management activities into a clear enterprise UX.</li>
+            <li>
+              Improve customer confidence through timely updates and final
+              reports.
+            </li>
           </ul>
-      </div>
+          <h3 class="block-title">My contribution</h3>
+          <ul class="plain-list two-col">
+            <li>Mapped the end-to-end complaint-resolution workflow.</li>
+            <li>
+              Defined role-based experiences and information architecture.
+            </li>
+            <li>
+              Designed dashboard, complaint list, complaint detail, 8D, action,
+              and QC review experiences.
+            </li>
+            <li>
+              Created interaction patterns for evidence upload, status tracking,
+              assignment, and approvals.
+            </li>
+            <li>
+              Translated complex quality-management activities into a clear
+              enterprise UX.
+            </li>
+          </ul>
+        </div>
 
-      <div class="cs-panel" id="panel-problem">
-        <h2 class="panel-title">The Problem</h2>
-        <p class="body-text">The previous process began when a customer raised a complaint through email or phone. The complaint creator collected additional details, the coordinator assigned an owner, and the resolution team exchanged documents and updates until the 8D report was completed.</p><p class="body-text">Because each stage was handled through separate messages and files, stakeholders lacked a shared view of the complaint lifecycle. Customers had limited visibility, while internal teams spent significant time searching for information and following up with owners.</p><table class="data-table"><thead><tr><th>Challenge</th><th>Business impact</th></tr></thead><tbody>
-          <tr><td>Complaints managed through multiple emails</td><td>Information became scattered and difficult to retrieve.</td></tr>
-          <tr><td>No centralized dashboard</td><td>Management could not quickly understand complaint volume or bottlenecks.</td></tr>
-          <tr><td>Manual assignment and follow-ups</td><td>Investigation and corrective actions could be delayed.</td></tr>
-          <tr><td>Evidence stored across attachments</td><td>Reviewing proof and previous decisions became time-consuming.</td></tr>
-          <tr><td>Unclear action ownership</td><td>Corrective actions could remain pending without visibility.</td></tr>
-          <tr><td>No structured closure verification</td><td>Teams could not easily confirm whether the solution remained effective.</td></tr>
-        </tbody></table>
-      </div>
+        <div class="cs-panel" id="panel-problem">
+          <h2 class="panel-title">The Problem</h2>
+          <p class="body-text">
+            The previous process began when a customer raised a complaint
+            through email or phone. The complaint creator collected additional
+            details, the coordinator assigned an owner, and the resolution team
+            exchanged documents and updates until the 8D report was completed.
+          </p>
+          <p class="body-text">
+            Because each stage was handled through separate messages and files,
+            stakeholders lacked a shared view of the complaint lifecycle.
+            Customers had limited visibility, while internal teams spent
+            significant time searching for information and following up with
+            owners.
+          </p>
+          <div class="pair-grid">
+            <div class="pair-card">
+              <div class="pair-title">
+                Complaints managed through multiple emails
+              </div>
+              <div class="pair-desc">
+                Information became scattered and difficult to retrieve.
+              </div>
+            </div>
+            <div class="pair-card">
+              <div class="pair-title">No centralized dashboard</div>
+              <div class="pair-desc">
+                Management could not quickly understand complaint volume or
+                bottlenecks.
+              </div>
+            </div>
+            <div class="pair-card">
+              <div class="pair-title">Manual assignment and follow-ups</div>
+              <div class="pair-desc">
+                Investigation and corrective actions could be delayed.
+              </div>
+            </div>
+            <div class="pair-card">
+              <div class="pair-title">Evidence stored across attachments</div>
+              <div class="pair-desc">
+                Reviewing proof and previous decisions became time-consuming.
+              </div>
+            </div>
+            <div class="pair-card">
+              <div class="pair-title">Unclear action ownership</div>
+              <div class="pair-desc">
+                Corrective actions could remain pending without visibility.
+              </div>
+            </div>
+            <div class="pair-card">
+              <div class="pair-title">No structured closure verification</div>
+              <div class="pair-desc">
+                Teams could not easily confirm whether the solution remained
+                effective.
+              </div>
+            </div>
+          </div>
+        </div>
 
-      <div class="cs-panel" id="panel-users">
-        <h2 class="panel-title">Users &amp; Workflow</h2>
-        <p class="body-text">The key UX challenge was to support five roles with different responsibilities while keeping every user connected to the same complaint record.</p><table class="data-table"><thead><tr><th>Role</th><th>Primary responsibility</th><th>Core need</th></tr></thead><tbody>
-          <tr><td>Customer</td><td>Raises and tracks complaints; reviews resolution.</td><td>Visibility and confidence.</td></tr>
-          <tr><td>Complaint Creator</td><td>Adds detailed problem information and evidence.</td><td>Complete and accurate complaint records.</td></tr>
-          <tr><td>Complaint Coordinator</td><td>Assigns owners, monitors progress, and performs QC review.</td><td>Control and accountability.</td></tr>
-          <tr><td>Resolution Owner</td><td>Leads investigation and completes the 8D report.</td><td>Structured investigation management.</td></tr>
-          <tr><td>Action Owner</td><td>Completes assigned corrective or preventive actions.</td><td>Clear tasks, deadlines, and evidence requirements.</td></tr>
-        </tbody></table><div class="callout">The solution used role-based dashboards and permissions, but maintained a shared source of truth for complaint details, actions, evidence, approvals, and activity history.</div><h3 class="block-title">End-to-end workflow</h3><p class="body-text">The information architecture was organized around the complaint lifecycle rather than individual departments, so users knew where to go based on the task at hand.</p><table class="data-table"><thead><tr><th>Stage</th><th>Owner</th><th>Outcome</th></tr></thead><tbody>
-          <tr><td>Complaint raised</td><td>Customer</td><td>Basic complaint is submitted and receives a unique ID.</td></tr>
-          <tr><td>Complaint documented</td><td>Complaint Creator</td><td>Detailed problem information and evidence are added.</td></tr>
-          <tr><td>Coordination</td><td>Complaint Coordinator</td><td>Resolution owner is assigned and priorities are confirmed.</td></tr>
-          <tr><td>Investigation</td><td>Resolution Owner</td><td>Team investigates the problem and identifies root cause.</td></tr>
-          <tr><td>Action management</td><td>Resolution Owner / Action Owner</td><td>Corrective and preventive actions are assigned and completed.</td></tr>
-          <tr><td>RCA and 8D completion</td><td>Resolution Owner</td><td>Fishbone, 5 Why, RCA, and 8D documentation are completed.</td></tr>
-          <tr><td>QC review</td><td>Complaint Coordinator</td><td>Report is approved or returned with actionable feedback.</td></tr>
-          <tr><td>Customer review and closure</td><td>Complaint Creator / Customer</td><td>Customer receives the final report and confirms resolution.</td></tr>
-          <tr><td>Effectiveness verification</td><td>Complaint Creator</td><td>Corrective action is verified after closure.</td></tr>
-        </tbody></table><h3 class="block-title">Information architecture</h3><table class="data-table"><thead><tr><th>Primary navigation</th><th>Key areas</th></tr></thead><tbody>
-          <tr><td>Dashboard</td><td>Overview, metrics, pending work, recent complaints, alerts</td></tr>
-          <tr><td>Complaints</td><td>All complaints, my complaints, assigned complaints, closed complaints</td></tr>
-          <tr><td>8D Reports</td><td>Reports in progress, pending review, completed reports</td></tr>
-          <tr><td>Action Management</td><td>My actions, team actions, overdue actions</td></tr>
-          <tr><td>Reports and Analytics</td><td>Complaint trends, resolution time, recurring issues</td></tr>
-        </tbody></table>
-      </div>
+        <div class="cs-panel" id="panel-users">
+          <h2 class="panel-title">Users &amp; Workflow</h2>
+          <p class="body-text">
+            The key UX challenge was to support five roles with different
+            responsibilities while keeping every user connected to the same
+            complaint record.
+          </p>
+          <div class="profile-rows">
+            <div class="profile-row">
+              <div class="profile-avatar">CU</div>
+              <div class="profile-row-wrap">
+                <div class="profile-row-body">
+                  <h4>Customer</h4>
+                  <p>Raises and tracks complaints; reviews resolution.</p>
+                </div>
+                <span class="profile-badge">Visibility and confidence</span>
+              </div>
+            </div>
+            <div class="profile-row">
+              <div class="profile-avatar">CR</div>
+               <div class="profile-row-wrap">
+              <div class="profile-row-body">
+                <h4>Complaint Creator</h4>
+                <p>Adds detailed problem information and evidence.</p>
+              </div>
+              <span class="profile-badge">Accurate records</span>
+              </div>
+            </div>
+            <div class="profile-row">
+              <div class="profile-avatar">CO</div>
+               <div class="profile-row-wrap">
+              <div class="profile-row-body">
+                <h4>Complaint Coordinator</h4>
+                <p>
+                  Assigns owners, monitors progress, and performs QC review.
+                </p>
+              </div>
+              <span class="profile-badge">Control and accountability</span>
+              </div>
+            </div>
+            <div class="profile-row">
+              <div class="profile-avatar">RO</div>
+               <div class="profile-row-wrap">
+              <div class="profile-row-body">
+                <h4>Resolution Owner</h4>
+                <p>Leads investigation and completes the 8D report.</p>
+              </div>
+              <span class="profile-badge">Structured investigation</span>
+              </div>
+            </div>
+            <div class="profile-row">
+              <div class="profile-avatar">AO</div>
+               <div class="profile-row-wrap">
+              <div class="profile-row-body">
+                <h4>Action Owner</h4>
+                <p>Completes assigned corrective or preventive actions.</p>
+              </div>
+              <span class="profile-badge">Clear tasks and deadlines</span>
+              </div>
+            </div>
+          </div>
+          <div class="callout">
+            The solution used role-based dashboards and permissions, but
+            maintained a shared source of truth for complaint details, actions,
+            evidence, approvals, and activity history.
+          </div>
+          <h3 class="block-title">End-to-end workflow</h3>
+          <p class="body-text">
+            The information architecture was organized around the complaint
+            lifecycle rather than individual departments, so users knew where to
+            go based on the task at hand.
+          </p>
+          <div class="cs-timeline">
+            <div class="cs-timeline-item">
+              <div class="cs-timeline-rail">
+                <div class="cs-timeline-node"></div>
+                <div class="cs-timeline-line"></div>
+              </div>
+              <div class="cs-timeline-body">
+                <h4>Complaint raised</h4>
+                <p>Basic complaint is submitted and receives a unique ID.</p>
+                <span class="cs-timeline-owner">Customer</span>
+              </div>
+            </div>
+            <div class="cs-timeline-item">
+              <div class="cs-timeline-rail">
+                <div class="cs-timeline-node"></div>
+                <div class="cs-timeline-line"></div>
+              </div>
+              <div class="cs-timeline-body">
+                <h4>Complaint documented</h4>
+                <p>Detailed problem information and evidence are added.</p>
+                <span class="cs-timeline-owner">Complaint Creator</span>
+              </div>
+            </div>
+            <div class="cs-timeline-item">
+              <div class="cs-timeline-rail">
+                <div class="cs-timeline-node"></div>
+                <div class="cs-timeline-line"></div>
+              </div>
+              <div class="cs-timeline-body">
+                <h4>Coordination</h4>
+                <p>
+                  Resolution owner is assigned and priorities are confirmed.
+                </p>
+                <span class="cs-timeline-owner">Complaint Coordinator</span>
+              </div>
+            </div>
+            <div class="cs-timeline-item">
+              <div class="cs-timeline-rail">
+                <div class="cs-timeline-node"></div>
+                <div class="cs-timeline-line"></div>
+              </div>
+              <div class="cs-timeline-body">
+                <h4>Investigation</h4>
+                <p>Team investigates the problem and identifies root cause.</p>
+                <span class="cs-timeline-owner">Resolution Owner</span>
+              </div>
+            </div>
+            <div class="cs-timeline-item">
+              <div class="cs-timeline-rail">
+                <div class="cs-timeline-node"></div>
+                <div class="cs-timeline-line"></div>
+              </div>
+              <div class="cs-timeline-body">
+                <h4>Action management</h4>
+                <p>
+                  Corrective and preventive actions are assigned and completed.
+                </p>
+                <span class="cs-timeline-owner"
+                  >Resolution Owner / Action Owner</span
+                >
+              </div>
+            </div>
+            <div class="cs-timeline-item">
+              <div class="cs-timeline-rail">
+                <div class="cs-timeline-node"></div>
+                <div class="cs-timeline-line"></div>
+              </div>
+              <div class="cs-timeline-body">
+                <h4>RCA and 8D completion</h4>
+                <p>Fishbone, 5 Why, RCA, and 8D documentation are completed.</p>
+                <span class="cs-timeline-owner">Resolution Owner</span>
+              </div>
+            </div>
+            <div class="cs-timeline-item">
+              <div class="cs-timeline-rail">
+                <div class="cs-timeline-node"></div>
+                <div class="cs-timeline-line"></div>
+              </div>
+              <div class="cs-timeline-body">
+                <h4>QC review</h4>
+                <p>Report is approved or returned with actionable feedback.</p>
+                <span class="cs-timeline-owner">Complaint Coordinator</span>
+              </div>
+            </div>
+            <div class="cs-timeline-item">
+              <div class="cs-timeline-rail">
+                <div class="cs-timeline-node"></div>
+                <div class="cs-timeline-line"></div>
+              </div>
+              <div class="cs-timeline-body">
+                <h4>Customer review and closure</h4>
+                <p>
+                  Customer receives the final report and confirms resolution.
+                </p>
+                <span class="cs-timeline-owner"
+                  >Complaint Creator / Customer</span
+                >
+              </div>
+            </div>
+            <div class="cs-timeline-item">
+              <div class="cs-timeline-rail">
+                <div class="cs-timeline-node"></div>
+                <div class="cs-timeline-line" style="display: none"></div>
+              </div>
+              <div class="cs-timeline-body">
+                <h4>Effectiveness verification</h4>
+                <p>Corrective action is verified after closure.</p>
+                <span class="cs-timeline-owner">Complaint Creator</span>
+              </div>
+            </div>
+          </div>
+          <h3 class="block-title">Information architecture</h3>
+          <div class="kv-list">
+            <div class="kv-list-item">
+              <div class="kv-label">Dashboard</div>
+              <div class="kv-value">
+                Overview, metrics, pending work, recent complaints, alerts
+              </div>
+            </div>
+            <div class="kv-list-item">
+              <div class="kv-label">Complaints</div>
+              <div class="kv-value">
+                All complaints, my complaints, assigned complaints, closed
+                complaints
+              </div>
+            </div>
+            <div class="kv-list-item">
+              <div class="kv-label">8D Reports</div>
+              <div class="kv-value">
+                Reports in progress, pending review, completed reports
+              </div>
+            </div>
+            <div class="kv-list-item">
+              <div class="kv-label">Action Management</div>
+              <div class="kv-value">
+                My actions, team actions, overdue actions
+              </div>
+            </div>
+            <div class="kv-list-item">
+              <div class="kv-label">Reports and Analytics</div>
+              <div class="kv-value">
+                Complaint trends, resolution time, recurring issues
+              </div>
+            </div>
+          </div>
+        </div>
 
-      <div class="cs-panel" id="panel-dashboard">
-        <h2 class="panel-title">Dashboard &amp; 8D</h2>
-        <p class="body-text">The dashboard was designed as the central visibility layer for the portal. It does more than display complaint counts; it helps users identify what requires attention immediately.</p><h3 class="block-title">Key dashboard metrics</h3><div class="metrics-grid">
-        <div class="metric-chip">Total complaints</div>
-        <div class="metric-chip">Open complaints</div>
-        <div class="metric-chip">Complaints under investigation</div>
-        <div class="metric-chip">Pending QC reviews</div>
-        <div class="metric-chip">Overdue actions</div>
-        <div class="metric-chip">Closed complaints</div>
-        <div class="metric-chip">Average resolution time</div>
-        <div class="metric-chip">Effectiveness verification pending</div>
-      </div><div class="callout">The most important design principle was to make the next action visible, not just the current number.</div><h3 class="block-title">Progressive complaint creation</h3><p class="body-text">The complaint submission process was divided into two levels. Customers provide basic information first, while the complaint creator completes the technical and operational details required for investigation.</p><h3 class="block-title">Basic complaint information (customer)</h3><ul class="plain-list two-col">
+        <div class="cs-panel" id="panel-dashboard">
+          <h2 class="panel-title">Dashboard &amp; 8D</h2>
+          <p class="body-text">
+            The dashboard was designed as the central visibility layer for the
+            portal. It does more than display complaint counts; it helps users
+            identify what requires attention immediately.
+          </p>
+          <h3 class="block-title">Key dashboard metrics</h3>
+          <div class="metrics-grid">
+            <div class="metric-chip">Total complaints</div>
+            <div class="metric-chip">Open complaints</div>
+            <div class="metric-chip">Complaints under investigation</div>
+            <div class="metric-chip">Pending QC reviews</div>
+            <div class="metric-chip">Overdue actions</div>
+            <div class="metric-chip">Closed complaints</div>
+            <div class="metric-chip">Average resolution time</div>
+            <div class="metric-chip">Effectiveness verification pending</div>
+          </div>
+          <div class="callout">
+            The most important design principle was to make the next action
+            visible, not just the current number.
+          </div>
+          <h3 class="block-title">Progressive complaint creation</h3>
+          <p class="body-text">
+            The complaint submission process was divided into two levels.
+            Customers provide basic information first, while the complaint
+            creator completes the technical and operational details required for
+            investigation.
+          </p>
+          <h3 class="block-title">Basic complaint information (customer)</h3>
+          <ul class="plain-list two-col">
             <li>Customer and contact details</li>
             <li>Product or part number</li>
             <li>Complaint title and description</li>
             <li>Date of occurrence</li>
             <li>Priority and category</li>
             <li>Initial attachments</li>
-          </ul><h3 class="block-title">Detailed complaint information (complaint creator)</h3><ul class="plain-list two-col">
+          </ul>
+          <h3 class="block-title">
+            Detailed complaint information (complaint creator)
+          </h3>
+          <ul class="plain-list two-col">
             <li>Problem statement</li>
             <li>Quantity affected</li>
             <li>Batch or lot number</li>
@@ -200,149 +636,456 @@
             <li>Customer impact</li>
             <li>Immediate containment</li>
             <li>Supporting evidence and documents</li>
-          </ul><p class="body-text">The complaint detail screen acts as the single source of truth. It combines complaint information, 8D progress, actions, evidence, and the activity timeline in one place, eliminating the need to search across email threads.</p><h3 class="block-title">8D report &amp; root-cause analysis</h3><p class="body-text">The 8D report was treated as a living investigation record rather than a static document completed at the end. Each section can be updated as the investigation progresses.</p><div class="discipline-grid">
-        <div class="discipline-card"><div class="code">D0</div><div class="purpose">Prepare and plan the response.</div></div>
-        <div class="discipline-card"><div class="code">D1</div><div class="purpose">Establish the investigation team.</div></div>
-        <div class="discipline-card"><div class="code">D2</div><div class="purpose">Describe the problem using measurable information.</div></div>
-        <div class="discipline-card"><div class="code">D3</div><div class="purpose">Implement immediate containment actions.</div></div>
-        <div class="discipline-card"><div class="code">D4</div><div class="purpose">Identify and validate the root cause.</div></div>
-        <div class="discipline-card"><div class="code">D5</div><div class="purpose">Select permanent corrective actions.</div></div>
-        <div class="discipline-card"><div class="code">D6</div><div class="purpose">Implement and validate corrective actions.</div></div>
-        <div class="discipline-card"><div class="code">D7</div><div class="purpose">Prevent recurrence through systemic improvements.</div></div>
-        <div class="discipline-card"><div class="code">D8</div><div class="purpose">Recognize the team and close the process.</div></div>
-      </div><h3 class="block-title">Analysis tools</h3><ul class="plain-list">
-            <li>Fishbone analysis for exploring possible causes across Man, Machine, Method, Material, Measurement, and Environment.</li>
-            <li>5 Why analysis for moving from the observed symptom to the underlying cause.</li>
-            <li>RCA document for summarizing findings, evidence, root cause, and selected actions.</li>
           </ul>
-      </div>
+          <p class="body-text">
+            The complaint detail screen acts as the single source of truth. It
+            combines complaint information, 8D progress, actions, evidence, and
+            the activity timeline in one place, eliminating the need to search
+            across email threads.
+          </p>
+          <h3 class="block-title">8D report &amp; root-cause analysis</h3>
+          <p class="body-text">
+            The 8D report was treated as a living investigation record rather
+            than a static document completed at the end. Each section can be
+            updated as the investigation progresses.
+          </p>
+          <div class="discipline-grid">
+            <div class="discipline-card">
+              <div class="code">D0</div>
+              <div class="purpose">Prepare and plan the response.</div>
+            </div>
+            <div class="discipline-card">
+              <div class="code">D1</div>
+              <div class="purpose">Establish the investigation team.</div>
+            </div>
+            <div class="discipline-card">
+              <div class="code">D2</div>
+              <div class="purpose">
+                Describe the problem using measurable information.
+              </div>
+            </div>
+            <div class="discipline-card">
+              <div class="code">D3</div>
+              <div class="purpose">
+                Implement immediate containment actions.
+              </div>
+            </div>
+            <div class="discipline-card">
+              <div class="code">D4</div>
+              <div class="purpose">Identify and validate the root cause.</div>
+            </div>
+            <div class="discipline-card">
+              <div class="code">D5</div>
+              <div class="purpose">Select permanent corrective actions.</div>
+            </div>
+            <div class="discipline-card">
+              <div class="code">D6</div>
+              <div class="purpose">
+                Implement and validate corrective actions.
+              </div>
+            </div>
+            <div class="discipline-card">
+              <div class="code">D7</div>
+              <div class="purpose">
+                Prevent recurrence through systemic improvements.
+              </div>
+            </div>
+            <div class="discipline-card">
+              <div class="code">D8</div>
+              <div class="purpose">
+                Recognize the team and close the process.
+              </div>
+            </div>
+          </div>
+          <h3 class="block-title">Analysis tools</h3>
+          <ul class="plain-list">
+            <li>
+              Fishbone analysis for exploring possible causes across Man,
+              Machine, Method, Material, Measurement, and Environment.
+            </li>
+            <li>
+              5 Why analysis for moving from the observed symptom to the
+              underlying cause.
+            </li>
+            <li>
+              RCA document for summarizing findings, evidence, root cause, and
+              selected actions.
+            </li>
+          </ul>
+        </div>
 
-      <div class="cs-panel" id="panel-actions">
-        <h2 class="panel-title">Actions &amp; QC</h2>
-        <p class="body-text">Corrective and preventive actions are central to successful complaint resolution. The portal provides a dedicated action-management experience so that each action has a clear owner, due date, expected outcome, and evidence requirement.</p><table class="data-table"><thead><tr><th>Action field</th><th>Purpose</th></tr></thead><tbody>
-          <tr><td>Action ID</td><td>Unique reference connected to the complaint.</td></tr>
-          <tr><td>Action description</td><td>Defines what must be completed.</td></tr>
-          <tr><td>Action type</td><td>Corrective, preventive, or containment.</td></tr>
-          <tr><td>Action owner</td><td>Identifies the responsible person or team.</td></tr>
-          <tr><td>Due date</td><td>Supports deadline and overdue tracking.</td></tr>
-          <tr><td>Evidence</td><td>Stores proof of completion.</td></tr>
-          <tr><td>Review status</td><td>Shows whether the action is approved or needs rework.</td></tr>
-        </tbody></table><div class="steps-row">
-        <span class="step-chip">Created</span>
-        <span class="step-chip">Assigned</span>
-        <span class="step-chip">In Progress</span>
-        <span class="step-chip">Evidence Submitted</span>
-        <span class="step-chip">Resolution Owner Review</span>
-        <span class="step-chip">Approved / Rework Requested</span>
-        <span class="step-chip final">Completed</span>
-      </div><h3 class="block-title">QC review &amp; customer closure</h3><p class="body-text">The QC stage ensures that the 8D report is complete, accurate, and ready to be shared with the customer. Reviewers can verify complaint details, root cause, action evidence, RCA documentation, and effectiveness planning.</p><ul class="plain-list">
+        <div class="cs-panel" id="panel-actions">
+          <h2 class="panel-title">Actions &amp; QC</h2>
+          <p class="body-text">
+            Corrective and preventive actions are central to successful
+            complaint resolution. The portal provides a dedicated
+            action-management experience so that each action has a clear owner,
+            due date, expected outcome, and evidence requirement.
+          </p>
+          <div class="pair-grid">
+            <div class="pair-card">
+              <div class="pair-title">Action ID</div>
+              <div class="pair-desc">
+                Unique reference connected to the complaint.
+              </div>
+            </div>
+            <div class="pair-card">
+              <div class="pair-title">Action description</div>
+              <div class="pair-desc">Defines what must be completed.</div>
+            </div>
+            <div class="pair-card">
+              <div class="pair-title">Action type</div>
+              <div class="pair-desc">
+                Corrective, preventive, or containment.
+              </div>
+            </div>
+            <div class="pair-card">
+              <div class="pair-title">Action owner</div>
+              <div class="pair-desc">
+                Identifies the responsible person or team.
+              </div>
+            </div>
+            <div class="pair-card">
+              <div class="pair-title">Due date</div>
+              <div class="pair-desc">
+                Supports deadline and overdue tracking.
+              </div>
+            </div>
+            <div class="pair-card">
+              <div class="pair-title">Evidence</div>
+              <div class="pair-desc">Stores proof of completion.</div>
+            </div>
+            <div class="pair-card">
+              <div class="pair-title">Review status</div>
+              <div class="pair-desc">
+                Shows whether the action is approved or needs rework.
+              </div>
+            </div>
+          </div>
+          <div class="steps-row">
+            <span class="step-chip">Created</span>
+            <span class="step-chip">Assigned</span>
+            <span class="step-chip">In Progress</span>
+            <span class="step-chip">Evidence Submitted</span>
+            <span class="step-chip">Resolution Owner Review</span>
+            <span class="step-chip">Approved / Rework Requested</span>
+            <span class="step-chip final">Completed</span>
+          </div>
+          <h3 class="block-title">QC review &amp; customer closure</h3>
+          <p class="body-text">
+            The QC stage ensures that the 8D report is complete, accurate, and
+            ready to be shared with the customer. Reviewers can verify complaint
+            details, root cause, action evidence, RCA documentation, and
+            effectiveness planning.
+          </p>
+          <ul class="plain-list">
             <li>Approved reports move forward to customer review.</li>
-            <li>Incomplete reports are returned with section-level feedback.</li>
-            <li>Feedback identifies what must be corrected, who must update it, and what happens next.</li>
-            <li>The customer can review the final report, provide feedback, and confirm resolution.</li>
-          </ul><div class="callout">Complaint closure and effectiveness verification were intentionally separated. A complaint may be closed after customer confirmation, while effectiveness verification can happen later to confirm that the corrective action remains successful.</div>
-      </div>
+            <li>
+              Incomplete reports are returned with section-level feedback.
+            </li>
+            <li>
+              Feedback identifies what must be corrected, who must update it,
+              and what happens next.
+            </li>
+            <li>
+              The customer can review the final report, provide feedback, and
+              confirm resolution.
+            </li>
+          </ul>
+          <div class="callout">
+            Complaint closure and effectiveness verification were intentionally
+            separated. A complaint may be closed after customer confirmation,
+            while effectiveness verification can happen later to confirm that
+            the corrective action remains successful.
+          </div>
+        </div>
 
-      <div class="cs-panel" id="panel-impact">
-        <h2 class="panel-title">Decisions &amp; Impact</h2>
-        <h3 class="block-title">Key UX decisions</h3><table class="data-table"><thead><tr><th>Design decision</th><th>Why it matters</th></tr></thead><tbody>
-          <tr><td>Role-based dashboards</td><td>Prevents information overload and surfaces the work relevant to each user.</td></tr>
-          <tr><td>Progressive disclosure</td><td>Customers can raise complaints without completing a complex technical form.</td></tr>
-          <tr><td>Single complaint record</td><td>Creates one reliable place for details, evidence, actions, and history.</td></tr>
-          <tr><td>Structured 8D workflow</td><td>Makes a complex quality methodology easier to complete consistently.</td></tr>
-          <tr><td>Dedicated action management</td><td>Improves accountability by connecting owners, due dates, and evidence.</td></tr>
-          <tr><td>Activity timeline</td><td>Provides traceability for every important update and handoff.</td></tr>
-          <tr><td>Actionable QC feedback</td><td>Reduces rework and avoids unclear approval comments.</td></tr>
-        </tbody></table><h3 class="block-title">Expected impact</h3><p class="body-text">The following outcomes are proposed targets for the product concept. They should be replaced with validated metrics if the portal is implemented and measured.</p><table class="data-table"><thead><tr><th>Area</th><th>Expected improvement</th></tr></thead><tbody>
-          <tr><td>Customer experience</td><td>Customers can track complaints without repeated follow-up emails.</td></tr>
-          <tr><td>Operational visibility</td><td>Management can monitor complaint volume, status, ownership, and bottlenecks.</td></tr>
-          <tr><td>Resolution process</td><td>A standardized 8D workflow improves consistency and traceability.</td></tr>
-          <tr><td>Action completion</td><td>Owners and due dates make corrective actions easier to monitor.</td></tr>
-          <tr><td>Quality assurance</td><td>QC review provides a controlled approval stage before customer communication.</td></tr>
-          <tr><td>Knowledge management</td><td>Centralized evidence and RCA records support future problem prevention.</td></tr>
-        </tbody></table><h3 class="block-title">Conclusion</h3><p class="body-text">The Customer Care Portal is more than a complaint-tracking system. It is a customer-centric quality ecosystem that connects complaint intake, investigation, corrective actions, quality review, customer communication, and effectiveness verification.</p><p class="body-text">By replacing fragmented email-based coordination with a shared, role-based workflow, the product creates visibility at every stage and accountability for every action.</p><div class="callout">Every complaint should have a clear status, every action should have an owner, and every resolution should have traceable evidence.</div>
-      </div>
-    </section>
+        <div class="cs-panel" id="panel-impact">
+          <h2 class="panel-title">Decisions &amp; Impact</h2>
+          <h3 class="block-title">Key UX decisions</h3>
+          <div class="pair-grid">
+            <div class="pair-card">
+              <div class="pair-title">Role-based dashboards</div>
+              <div class="pair-desc">
+                Prevents information overload and surfaces the work relevant to
+                each user.
+              </div>
+            </div>
+            <div class="pair-card">
+              <div class="pair-title">Progressive disclosure</div>
+              <div class="pair-desc">
+                Customers can raise complaints without completing a complex
+                technical form.
+              </div>
+            </div>
+            <div class="pair-card">
+              <div class="pair-title">Single complaint record</div>
+              <div class="pair-desc">
+                Creates one reliable place for details, evidence, actions, and
+                history.
+              </div>
+            </div>
+            <div class="pair-card">
+              <div class="pair-title">Structured 8D workflow</div>
+              <div class="pair-desc">
+                Makes a complex quality methodology easier to complete
+                consistently.
+              </div>
+            </div>
+            <div class="pair-card">
+              <div class="pair-title">Dedicated action management</div>
+              <div class="pair-desc">
+                Improves accountability by connecting owners, due dates, and
+                evidence.
+              </div>
+            </div>
+            <div class="pair-card">
+              <div class="pair-title">Activity timeline</div>
+              <div class="pair-desc">
+                Provides traceability for every important update and handoff.
+              </div>
+            </div>
+            <div class="pair-card">
+              <div class="pair-title">Actionable QC feedback</div>
+              <div class="pair-desc">
+                Reduces rework and avoids unclear approval comments.
+              </div>
+            </div>
+          </div>
+          <h3 class="block-title">Expected impact</h3>
+          <p class="body-text">
+            The following outcomes are proposed targets for the product concept.
+            They should be replaced with validated metrics if the portal is
+            implemented and measured.
+          </p>
+          <div class="pair-grid">
+            <div class="pair-card">
+              <div class="pair-title">Customer experience</div>
+              <div class="pair-desc">
+                Customers can track complaints without repeated follow-up
+                emails.
+              </div>
+            </div>
+            <div class="pair-card">
+              <div class="pair-title">Operational visibility</div>
+              <div class="pair-desc">
+                Management can monitor complaint volume, status, ownership, and
+                bottlenecks.
+              </div>
+            </div>
+            <div class="pair-card">
+              <div class="pair-title">Resolution process</div>
+              <div class="pair-desc">
+                A standardized 8D workflow improves consistency and
+                traceability.
+              </div>
+            </div>
+            <div class="pair-card">
+              <div class="pair-title">Action completion</div>
+              <div class="pair-desc">
+                Owners and due dates make corrective actions easier to monitor.
+              </div>
+            </div>
+            <div class="pair-card">
+              <div class="pair-title">Quality assurance</div>
+              <div class="pair-desc">
+                QC review provides a controlled approval stage before customer
+                communication.
+              </div>
+            </div>
+            <div class="pair-card">
+              <div class="pair-title">Knowledge management</div>
+              <div class="pair-desc">
+                Centralized evidence and RCA records support future problem
+                prevention.
+              </div>
+            </div>
+          </div>
+          <h3 class="block-title">Conclusion</h3>
+          <p class="body-text">
+            The Customer Care Portal is more than a complaint-tracking system.
+            It is a customer-centric quality ecosystem that connects complaint
+            intake, investigation, corrective actions, quality review, customer
+            communication, and effectiveness verification.
+          </p>
+          <p class="body-text">
+            By replacing fragmented email-based coordination with a shared,
+            role-based workflow, the product creates visibility at every stage
+            and accountability for every action.
+          </p>
+          <div class="callout">
+            Every complaint should have a clear status, every action should have
+            an owner, and every resolution should have traceable evidence.
+          </div>
+        </div>
+      </section>
 
-    <section class="card reveal" style="margin-top:20px;" id="gallery">
-      <h2 class="card-title">Screens &amp; visuals</h2>
-      <p class="gallery-note">A view-only look at the key screens for this project. Select a tile to see it larger with a short description.</p>
-      <div class="gallery-grid">
-        <button type="button" class="gallery-tile" data-label="Dashboard overview" data-desc="Role-based dashboard surfacing open complaints, pending QC reviews, overdue actions and effectiveness checks - built to show the next action, not just a count.">
-          <span class="placeholder-label">Dashboard overview</span>
-          <span class="view-hint">View screen</span>
-        </button>
-        <button type="button" class="gallery-tile" data-label="Complaint list" data-desc="Filterable list of all complaints, my complaints, assigned complaints and closed complaints in one shared view.">
-          <span class="placeholder-label">Complaint list</span>
-          <span class="view-hint">View screen</span>
-        </button>
-        <button type="button" class="gallery-tile" data-label="Complaint detail" data-desc="The single source of truth: complaint information, 8D progress, actions, evidence and the activity timeline combined in one screen.">
-          <span class="placeholder-label">Complaint detail</span>
-          <span class="view-hint">View screen</span>
-        </button>
-        <button type="button" class="gallery-tile" data-label="8D report" data-desc="D0-D8 investigation record with Fishbone and 5 Why analysis tools, updated live as the investigation progresses.">
-          <span class="placeholder-label">8D report</span>
-          <span class="view-hint">View screen</span>
-        </button>
-        <button type="button" class="gallery-tile" data-label="Action management" data-desc="Every corrective, preventive or containment action with a clear owner, due date, evidence requirement and review status.">
-          <span class="placeholder-label">Action management</span>
-          <span class="view-hint">View screen</span>
-        </button>
-        <button type="button" class="gallery-tile" data-label="QC review" data-desc="Section-level approval workflow that returns incomplete reports with actionable feedback before they reach the customer.">
-          <span class="placeholder-label">QC review</span>
-          <span class="view-hint">View screen</span>
-        </button>
-        <button type="button" class="gallery-tile" data-label="Customer view" data-desc="The simplified view customers see: complaint status, final report and confirmation of resolution.">
-          <span class="placeholder-label">Customer view</span>
-          <span class="view-hint">View screen</span>
-        </button>
-      </div>
-    </section>
-
-    <section class="card reveal" style="margin-top:20px;" id="moreCaseStudies" data-current-id="customer-care-portal">
-      <h2 class="card-title">More case studies</h2>
-      <div class="more-cs-viewport">
-        <div class="more-cs-track"></div>
-        <div class="more-cs-nav">
-          <button class="more-cs-arrow" data-more-cs="prev" aria-label="Scroll left">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+      <section class="card reveal" style="margin-top: 20px" id="gallery">
+        <h2 class="card-title">Screens &amp; visuals</h2>
+        <p class="gallery-note">
+          A view-only look at the key screens for this project. Select a tile to
+          see it larger with a short description.
+        </p>
+        <div class="gallery-grid">
+          <button
+            type="button"
+            class="gallery-tile"
+            data-label="Dashboard overview"
+            data-desc="Role-based dashboard surfacing open complaints, pending QC reviews, overdue actions and effectiveness checks - built to show the next action, not just a count."
+          >
+            <span class="placeholder-label">Dashboard overview</span>
+            <span class="view-hint">View screen</span>
           </button>
-          <button class="more-cs-arrow" data-more-cs="next" aria-label="Scroll right">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+          <button
+            type="button"
+            class="gallery-tile"
+            data-label="Complaint list"
+            data-desc="Filterable list of all complaints, my complaints, assigned complaints and closed complaints in one shared view."
+          >
+            <span class="placeholder-label">Complaint list</span>
+            <span class="view-hint">View screen</span>
+          </button>
+          <button
+            type="button"
+            class="gallery-tile"
+            data-label="Complaint detail"
+            data-desc="The single source of truth: complaint information, 8D progress, actions, evidence and the activity timeline combined in one screen."
+          >
+            <span class="placeholder-label">Complaint detail</span>
+            <span class="view-hint">View screen</span>
+          </button>
+          <button
+            type="button"
+            class="gallery-tile"
+            data-label="8D report"
+            data-desc="D0-D8 investigation record with Fishbone and 5 Why analysis tools, updated live as the investigation progresses."
+          >
+            <span class="placeholder-label">8D report</span>
+            <span class="view-hint">View screen</span>
+          </button>
+          <button
+            type="button"
+            class="gallery-tile"
+            data-label="Action management"
+            data-desc="Every corrective, preventive or containment action with a clear owner, due date, evidence requirement and review status."
+          >
+            <span class="placeholder-label">Action management</span>
+            <span class="view-hint">View screen</span>
+          </button>
+          <button
+            type="button"
+            class="gallery-tile"
+            data-label="QC review"
+            data-desc="Section-level approval workflow that returns incomplete reports with actionable feedback before they reach the customer."
+          >
+            <span class="placeholder-label">QC review</span>
+            <span class="view-hint">View screen</span>
+          </button>
+          <button
+            type="button"
+            class="gallery-tile"
+            data-label="Customer view"
+            data-desc="The simplified view customers see: complaint status, final report and confirmation of resolution."
+          >
+            <span class="placeholder-label">Customer view</span>
+            <span class="view-hint">View screen</span>
           </button>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <div>
-          <span class="brand-mark">SR</span>
-          <p class="footer-tag">Designing interfaces for problems that start as spreadsheets.</p>
+      <section
+        class="card reveal"
+        style="margin-top: 20px"
+        id="moreCaseStudies"
+        data-current-id="customer-care-portal"
+      >
+        <h2 class="card-title">More case studies</h2>
+        <div class="more-cs-viewport">
+          <div class="more-cs-track"></div>
+          <div class="more-cs-nav">
+            <button
+              class="more-cs-arrow"
+              data-more-cs="prev"
+              aria-label="Scroll left"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </button>
+            <button
+              class="more-cs-arrow"
+              data-more-cs="next"
+              aria-label="Scroll right"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </button>
+          </div>
         </div>
-        <div class="footer-actions">
-          <a class="btn btn-solid magnetic" href="mailto:smrutirtg@gmail.com">Email me</a>
-          <a class="btn btn-outline magnetic" href="https://www.linkedin.com/in/smruti-ranjan007" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn btn-outline magnetic" href="https://github.com/SmrutiRanjanPati" target="_blank" rel="noopener">GitHub</a>
-        </div>
-      </div>
-      <p class="footer-copy">© <span id="year"></span> Smruti Ranjan Pati. Designed, developed, and continuously refined with attention to every detail.</p>
-    </footer>
-  </main>
+      </section>
 
-  <!-- Lightbox: view-only screen preview + description -->
-  <div class="lightbox" id="lightbox" hidden>
-    <div class="lightbox-content">
-      <div class="lightbox-visual"></div>
-      <div class="lightbox-body">
-        <button class="lightbox-close" type="button" aria-label="Close">✕</button>
-        <h4></h4>
-        <p></p>
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <div>
+            <span class="brand-mark">SR</span>
+            <p class="footer-tag">
+              Designing interfaces for problems that start as spreadsheets.
+            </p>
+          </div>
+          <div class="footer-actions">
+            <a class="btn btn-solid magnetic" href="mailto:smrutirtg@gmail.com"
+              >Email me</a
+            >
+            <a
+              class="btn btn-outline magnetic"
+              href="https://www.linkedin.com/in/smruti-ranjan007"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn</a
+            >
+            <a
+              class="btn btn-outline magnetic"
+              href="https://github.com/SmrutiRanjanPati"
+              target="_blank"
+              rel="noopener"
+              >GitHub</a
+            >
+          </div>
+        </div>
+        <p class="footer-copy">
+          © <span id="year"></span> Smruti Ranjan Pati. Designed, developed, and
+          continuously refined with attention to every detail.
+        </p>
+      </footer>
+    </main>
+
+    <!-- Lightbox: view-only screen preview + description -->
+    <div class="lightbox" id="lightbox" hidden>
+      <div class="lightbox-content">
+        <div class="lightbox-visual"></div>
+        <div class="lightbox-body">
+          <button class="lightbox-close" type="button" aria-label="Close">
+            ✕
+          </button>
+          <h4></h4>
+          <p></p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <script src="script.js" defer></script>
-</body>
-
+    <script src="script.js" defer></script>
+  </body>
 </html>
