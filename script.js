@@ -1,5 +1,5 @@
 // ── Disable right-click context menu ──
-// document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('contextmenu', e => e.preventDefault());
 
 // ============ FOOTER YEAR ============
 const yearEl = document.getElementById('year');
