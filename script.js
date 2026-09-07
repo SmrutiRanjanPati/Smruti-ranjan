@@ -423,44 +423,44 @@ const CASE_STUDIES = [
   renderPagination();
 })();
 
+// ============ CASE STUDY TABS (tabbed case-study detail pages) ============
+(function initCaseStudyTabs() {
+  document.querySelectorAll('.cs-tabs').forEach(tabsNav => {
+    const wrap = tabsNav.nextElementSibling;
+    if (!wrap || !wrap.classList.contains('cs-panel-wrap')) return;
+
+    tabsNav.querySelectorAll('.cs-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabsNav.querySelectorAll('.cs-tab').forEach(b => b.classList.remove('active'));
+        wrap.querySelectorAll('.cs-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        const panel = document.getElementById(btn.dataset.tab);
+        if (panel) panel.classList.add('active');
+        wrap.scrollIntoView({ behavior: 'auto', block: 'nearest' });
+      });
+    });
+  });
+})();
+
 // ============ MORE CASE STUDIES CAROUSEL (case study detail pages) ============
 (function initMoreCaseStudies() {
   const section = document.getElementById('moreCaseStudies');
   if (!section) return;
 
-  // Get current HTML filename
-  const currentPage = window.location.pathname
-    .split('/')
-    .pop()
-    .replace('.html', '');
-
-  // Find current case study
-  const currentId = currentPage;
-
-  // Remove current case study from carousel
+  const currentId = section.dataset.currentId;
   const others = CASE_STUDIES.filter(cs => cs.id !== currentId);
-
-  if (!others.length) {
-    section.hidden = true;
-    return;
-  }
+  if (!others.length) { section.hidden = true; return; }
 
   const track = section.querySelector('.more-cs-track');
   const prevBtn = section.querySelector('[data-more-cs="prev"]');
   const nextBtn = section.querySelector('[data-more-cs="next"]');
-
   if (!track) return;
 
   track.innerHTML = others.map(cs => `
-    <a
-      class="work-tile more-cs-card tilt"
-      href="${cs.href}"
-      aria-label="View case study: ${cs.title}"
-    >
+    <a class="work-tile more-cs-card tilt" href="${cs.href}" aria-label="View case study: ${cs.title}">
       <div class="work-visual ${visualClassFor(cs.visual)}">
         ${renderVisualMock(cs.visual)}
       </div>
-
       <div class="work-info">
         <h3>${cs.title}</h3>
         <p>${cs.cardSummary}</p>
@@ -470,58 +470,29 @@ const CASE_STUDIES = [
   `).join('');
 
   bindTilt(track);
-
-  if (window.__bindCursorHover) {
-    window.__bindCursorHover(track);
-  }
+  if (window.__bindCursorHover) window.__bindCursorHover(track);
 
   function updateArrows() {
     if (!prevBtn || !nextBtn) return;
-
     prevBtn.disabled = track.scrollLeft <= 4;
-
-    nextBtn.disabled =
-      track.scrollLeft >=
-      track.scrollWidth - track.clientWidth - 4;
+    nextBtn.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 4;
   }
 
   function scrollByCard(dir) {
     const card = track.querySelector('.more-cs-card');
-
-    const amount = card
-      ? card.getBoundingClientRect().width + 16
-      : 240;
-
-    track.scrollBy({
-      left: dir * amount,
-      behavior: prefersReducedMotion ? 'auto' : 'smooth'
-    });
+    const amount = card ? card.getBoundingClientRect().width + 16 : 240;
+    track.scrollBy({ left: dir * amount, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
   }
 
-  prevBtn?.addEventListener('click', () => {
-    scrollByCard(-1);
-  });
-
-  nextBtn?.addEventListener('click', () => {
-    scrollByCard(1);
-  });
-
-  track.addEventListener('scroll', updateArrows, {
-    passive: true
-  });
-
+  prevBtn?.addEventListener('click', () => scrollByCard(-1));
+  nextBtn?.addEventListener('click', () => scrollByCard(1));
+  track.addEventListener('scroll', updateArrows, { passive: true });
   window.addEventListener('resize', updateArrows);
 
+  // Hide the nav arrows entirely if everything already fits (nothing to scroll)
   requestAnimationFrame(() => {
     const nav = section.querySelector('.more-cs-nav');
-
-    if (
-      nav &&
-      track.scrollWidth <= track.clientWidth + 4
-    ) {
-      nav.hidden = true;
-    }
-
+    if (nav && track.scrollWidth <= track.clientWidth + 4) nav.hidden = true;
     updateArrows();
   });
 })();
